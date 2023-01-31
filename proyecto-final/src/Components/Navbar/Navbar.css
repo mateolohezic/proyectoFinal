@@ -1,0 +1,25 @@
+.navBar{
+    background-color: #CB3737;
+    color: white;
+    box-shadow: -1px 9px 32px -4px rgba(0,0,0,0.75);
+    box-shadow: -1px 9px 32px -4px rgba(0,0,0,0.75);
+    box-shadow: -1px 9px 32px -4px rgba(0,0,0,0.75);
+}
+
+.nav-link{
+    color: white;
+}
+
+.nav-link:hover{
+    color: #E3E3E3;
+    font-size: 1.02rem;
+}
+
+.logoNavBar{
+    width: 100%;
+}
+
+.navbar-brand{
+    width: 7%;
+    margin-right: 2rem;
+}
