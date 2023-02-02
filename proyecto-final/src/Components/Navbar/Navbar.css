@@ -1,5 +1,6 @@
 .navBar{
     background-color: #CB3737;
+    font-size: 1.1rem;
     color: white;
     box-shadow: -1px 9px 32px -4px rgba(0,0,0,0.75);
     box-shadow: -1px 9px 32px -4px rgba(0,0,0,0.75);
@@ -12,7 +13,7 @@
 
 .nav-link:hover{
     color: #E3E3E3;
-    font-size: 1.02rem;
+    font-size: 1.07rem;
 }
 
 .logoNavBar{

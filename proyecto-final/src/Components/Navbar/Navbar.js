@@ -13,27 +13,27 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" aria-current="page" href="/#">Inicio</a>
+              <a className="nav-link" aria-current="page" href="/">INICIO</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#">Destacado</a>
+              <a className="nav-link" href="/Admin">DESTACADO</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#">Contactos</a>
+              <a className="nav-link" href="/#">CONTACTO</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#">Destacado</a>
+              <a className="nav-link" href="/#">NOVEDADES</a>
             </li>
           </ul>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" aria-current="page" href="/#">Favoritos</a>
+              <a className="nav-link" aria-current="page" href="/#">FAVORITOS   <i className="bi bi-star-fill ms-2 me-2"></i></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#">Carrito</a>
+              <a className="nav-link" href="/#">CARRITO <i className="bi bi-cart-fill ms-2 me-2"></i></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#">Iniciar Sesión</a>
+              <a className="nav-link" href="/#">INICIAR SESIÓN</a>
             </li>
           </ul>
         </div>
