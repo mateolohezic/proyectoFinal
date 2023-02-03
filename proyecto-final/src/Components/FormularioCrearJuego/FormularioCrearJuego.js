@@ -4,10 +4,8 @@ import './FormularioCrearJuego.css';
 
 function FormularioCrearJuego() {
 
-    
-    
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmite] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false);
     const [datos, setDatos] = useState({
         title: '',
         developer: '',
@@ -18,8 +16,7 @@ function FormularioCrearJuego() {
         image1: '',
         image2: '',
         image3: '',
-        image4: '',
-        rating: 0,
+        image4: ''
     });
 
     const handleInputChange = (event) => {
@@ -27,31 +24,60 @@ function FormularioCrearJuego() {
             ...datos,
             [event.target.name] : event.target.value
         })
-    }
-
-    const enviarDatos = async (event) => { 
-        event.preventDefault();
         setFormErrors(validate(datos));
-        setIsSubmite(true);
-        // await axios.post(`http://localhost:8000/crear-juego`, datos)
-        // window.location.reload(true)
     }
 
-    const validate = (values) => {
+    const validate =  (values) => {
         const errors = {}
-        const regex = /^[a-zA-Z](?:[a-z\d]|-(?=[a-z\d])){6,20}$/i;
+        const regexText = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){2,30}$/i;
         if (!values.title) {
             errors.title = 'Titulo requerido.';
-        } else if (!regex.test(values.title)) {
+        } else if (!regexText.test(values.title)) {
             errors.title = 'Titulo invalido.';
+        }
+        if (!values.developer) {
+            errors.developer = 'Nombre requerido.';
+        } else if (!regexText.test(values.developer)) {
+            errors.developer = 'Nombre invalido.';
+        }
+        if (values.synopsis.length === 0) {
+            errors.synopsis = 'Campo requerido.';
+        }
+        if (values.image1.length === 0) {
+            errors.image1 = 'Campo requerido.';
+        }
+        if (values.image2.length === 0) {
+            errors.image2 = 'Campo requerido.';
+        }
+        if (values.image3.length === 0) {
+            errors.image3 = 'Campo requerido.';
+        }
+        if (values.image4.length === 0) {
+            errors.image4 = 'Campo requerido.';
+        }
+        if (values.categorie.length <= 1) {
+            console.log(values.categorie);
+            errors.categorie = 'Campo requerido.';
         }
         return errors;
     }
 
-    useEffect(() => {
-        if(Object.keys(formErrors).length === 0 && isSubmit){
+    const enviarDatos = (event) => { 
+        event.preventDefault();
+        if (isSubmit === true) {
+        axios.post(`http://localhost:8000/crear-juego`, datos)
+        window.location.reload(true)
         }
-    }, [formErrors])
+
+    }
+
+    useEffect(() => {
+
+        setIsSubmit(false)
+        if(Object.keys(formErrors).length === 0){
+        setIsSubmit(true)
+        }
+    }, [handleInputChange])
 
     return (
         <>
@@ -59,73 +85,66 @@ function FormularioCrearJuego() {
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Titulo</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="title" value={datos.name} />
-                        <p>{ formErrors.title }</p>
+                        <input type="text" className="form-control" onChange={handleInputChange} name="title" value={datos.title} />
+                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.title }</p>
                     </div>
                     <div className="mb-3 col">
                         <label className="form-label">Desarrollador</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="developer"  />
+                        <input type="text" className="form-control" onChange={handleInputChange} name="developer" value={datos.developer} />
+                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.developer }</p>
                     </div>
                 </div>
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Categoría</label>
-                        <select className="form-select" onChange={handleInputChange} name="categorie" >
-                            <option defaultValue="" >Seleccione una Categoría</option>
+                        <select className="form-select" onChange={handleInputChange} name="categorie">
+                            <option value="a">Seleccione una Categoría</option>
                             <option value="Acción">Acción</option>
                             <option value="Carreras">Carreras</option>
                             <option value="Estrategia">Estrategia</option>
                             <option value="Terror">Terror</option>
                         </select>
+                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.categorie }</p>
                     </div>
                     <div className="mb-3 col">
                         <label className="form-label">Fecha de Estreno</label>
-                        <input type="number" className="form-control" onChange={handleInputChange} name="date" min="1900" max="2023"   />
+                        <input type="number" className="form-control" onChange={handleInputChange} name="date" min="1952" max="2024" required/>
                     </div>
                 </div>                                       
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Precio</label>
-                        <input type="number" className="form-control" onChange={handleInputChange} name="price"  aria-describedby="priceHelp"  />
+                        <input type="number" className="form-control" onChange={handleInputChange} name="price" min="0" max="30000" required/>
                         <div className="form-text">Si el juego es gratis, inserte 0.</div>
                     </div>
                     <div className="mb-3 col">
                         <label className="form-label">Descripción</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="synopsis"   />
+                        <input type="text" className="form-control" onChange={handleInputChange} name="synopsis" maxLength="200"/>
+                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.synopsis }</p>
                     </div>
                 </div>
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Portada</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="image1"   />
+                        <input type="text" className="form-control" onChange={handleInputChange} name="image1" value={datos.image1} />
+                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.image1 }</p>
                     </div>
                     <div className="mb-3 col">
                         <label className="form-label">Imagen 2</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="image2"   />
+                        <input type="text" className="form-control" onChange={handleInputChange} name="image2" value={datos.image2} />
+                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.image2 }</p>
                     </div>
                 </div>
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Imagen 3</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="image3"   />
+                        <input type="text" className="form-control" onChange={handleInputChange} name="image3" value={datos.image3} />
+                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.image3 }</p>
                     </div>
                     <div className="mb-3 col">
                         <label className="form-label">Imagen 4</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="image4"   />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="mb-3 col-6">
-                        <label className="form-label">Puntaje</label>
-                        <select className="form-select" onChange={handleInputChange} aria-label="Default select example" name="rating" >
-                            <option defaultValue="">Seleccione un puntaje</option>
-                            <option value="0">0/5</option>
-                            <option value="1">1/5</option>
-                            <option value="2">2/5</option>
-                            <option value="3">3/5</option>
-                            <option value="4">4/5</option>
-                            <option value="5">5/5</option>
-                        </select>
+                        <input type="text" className="form-control" onChange={handleInputChange} name="image4" value={datos.image4} />
+                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.image4 }</p>
                     </div>
                 </div>
                 <div className="modal-footer">
