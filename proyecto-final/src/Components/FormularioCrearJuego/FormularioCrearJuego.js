@@ -29,7 +29,7 @@ function FormularioCrearJuego() {
 
     const validate =  (values) => {
         const errors = {}
-        const regexText = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){2,30}$/i;
+        const regexText = /^[a-z ,.'-]{1,300}$/i;
         if (!values.title) {
             errors.title = 'Titulo requerido.';
         } else if (!regexText.test(values.title)) {
