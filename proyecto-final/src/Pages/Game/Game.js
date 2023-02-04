@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect }from 'react'
 import CarouselGame from '../../Components/CarouselGame/CarouselGame';
 import './Game.css';
+import axios from 'axios';
 
 
 function Game() {
 
-  return (
+    const [juegosTotales, SetJuegosTotales] = useState({})
+
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/obtener-juegos`)
+        .then((response) =>{
+            SetJuegosTotales(response.data)
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+    }, [])
+
+    return (
     <>
         <div className='fondoGame w-100'>
             <div className="text-start volverInicio ms-4">
@@ -27,8 +40,8 @@ function Game() {
                     <div className="mt-2 ps-2 fs-5 mb-5">Titulo del Juego</div>
                 </div>
             </div>
-            <div class="d-flex flex-row-reverse fixedBottom m-5">
-                <a href="/404"><button type="button" class="btn btn-darkk btn-lg">Comprar</button></a>
+            <div className="d-flex flex-row-reverse fixedBottom m-5">
+                <a href="/404"><button type="button" className="btn btn-darkk btn-lg">Comprar</button></a>
             </div>
         </div>
     </>
