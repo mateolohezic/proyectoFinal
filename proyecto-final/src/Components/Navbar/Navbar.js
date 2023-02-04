@@ -4,7 +4,7 @@ import logoZonaPlay from './logo.png'
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navBar fixed-top">
+    <nav className="navbar navbar-expand-lg navBar sticky-top">
       <div className="container-fluid">
         <a className="navbar-brand" href="/#"><img className='logoNavBar' src={logoZonaPlay} alt="logo" /></a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@ function Navbar() {
               <a className="nav-link" href="/Admin"><div className='border-bottom border-1 p-1'>DESTACADO</div></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#"><div className='border-bottom border-1 p-1'>CONTACTO</div></a>
+              <a className="nav-link" href="/Game"><div className='border-bottom border-1 p-1'>CONTACTO</div></a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/#"><div className='border-bottom border-1 p-1'>NOVEDADES</div></a>

@@ -12,6 +12,7 @@
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
+    "react-carousel3": "^1.0.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.0",
     "react-router-dom": "^6.8.0",
