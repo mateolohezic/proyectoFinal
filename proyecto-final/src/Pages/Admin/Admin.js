@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ModalAñadirJuego from '../../Components/ModalAñadirJuego/ModalAñadirJuego';
 import './Admin.css';
-
+import axios from 'axios';
+import FilaJuegosAdmin from '../../Components/FilaJuegosAdmin/FilaJuegosAdmin';
 
 function Admin() {
-  return (
+
+    const [juegos, setJuegos] = useState([])
+
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/obtener-juegos`)
+        .then((response) =>{
+            setJuegos(response.data);
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+        console.log(juegos);
+    }, [])
+
+    return (
         <>
         <div className="tituloPrincipal text-center mx-auto fs-1 border-bottom border-1 pb-4 w-75">Administración</div>
         <div className="container-fluid row text-center justify-content-center mt-5 mb-5 m-0 p-0">
@@ -16,7 +31,6 @@ function Admin() {
                     </div>
                     <div className="text-end mb-3 me-1">
                         <ModalAñadirJuego />
-                        {/* <button type="button" className="btn btn-danger p-2 pe-3 text-light" onClick={handleShow}><i className="bi bi-plus"></i> Añadir</button> */}
                     </div>
                 </div>
                 <div className="table-responsive mt-3">
@@ -31,6 +45,13 @@ function Admin() {
                             <th>Opciones</th>
                         </tr>
                         </thead>
+                        <tbody>
+
+                        {
+                            juegos.map(cadaJuego => <FilaJuegosAdmin key={cadaJuego._id} juego={cadaJuego} />)
+                        }
+
+                        </tbody>
                     </table>
                 </div>
             </div>
