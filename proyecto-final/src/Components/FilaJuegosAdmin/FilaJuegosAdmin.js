@@ -1,4 +1,9 @@
 import React from 'react'
+import BotonHacerFavorito from '../BotonHacerFavorito/BotonHacerFavorito';
+import BotonHacerPublico from '../BotonHacerPublico/BotonHacerPublico';
+import BotonQuitarFavorito from '../BotonQuitarFavorito/BotonQuitarFavorito';
+import BotonQuitarPublico from '../BotonQuitarPublico/BotonQuitarPublico';
+import ModalBorrarJuego from '../ModalBorrarJuego/ModalBorrarJuego';
 import ModalEditarJuego from '../ModalEditarJuego/ModalEditarJuego';
 import './FilaJuegosAdmin.css';
 
@@ -12,18 +17,22 @@ function FilaJuegosAdmin( juego ) {
             <td>{juego.juego.categorie}</td>
             <td>$ {juego.juego.price}</td>
             <td>
-                <button type="button" className="btn btn-danger" ><i className="bi bi-bag-check-fill"></i></button>
+                {
+                    juego.juego.published ? <BotonQuitarPublico juego={juego.juego} /> : <BotonHacerPublico juego={juego.juego} />
+                }
             </td>
             <td>
             <div className="d-flex justify-content-evenly" >                                    
                 <div>
-                    <button type="button" className="btn btn-danger"><i className="bi bi-star-fill"></i></button>
+                    {
+                        juego.juego.favorite ? <BotonQuitarFavorito juego={juego.juego} /> : <BotonHacerFavorito juego={juego.juego} />
+                    }
                 </div>
                 <div>
                     <ModalEditarJuego juego={juego.juego}/>
                 </div>
                 <div>
-                    <button type="button" className="btn btn-danger"><i className="bi bi-trash"></i></button>
+                    <ModalBorrarJuego juego={juego.juego}/>
                 </div>
             </div>
             </td>

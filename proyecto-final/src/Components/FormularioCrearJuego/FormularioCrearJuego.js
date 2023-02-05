@@ -4,6 +4,19 @@ import './FormularioCrearJuego.css';
 
 function FormularioCrearJuego() {
 
+    const [juegos, setJuegos] = useState([])
+
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/obtener-juegos`)
+        .then((response) =>{
+            setJuegos(response.data);
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+
+    }, [])
+
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [datos, setDatos] = useState({
@@ -29,30 +42,33 @@ function FormularioCrearJuego() {
 
     const validate =  (values) => {
         const errors = {}
-        const regexText = /^[a-z ,.'-]{1,300}$/i;
+        const regexText = /^[a-z0-9 ,.'-]{1,300}$/i;
+        const juegosCoinciden = juegos.filter(juego => juego.title === values.title)
         if (!values.title) {
             errors.title = 'Titulo requerido.';
-        } else if (!regexText.test(values.title)) {
+        } else if (!regexText.test(values.title) || values.title.includes("  ") || values.title.charAt(0) === " ") {
             errors.title = 'Titulo invalido.';
+        } else if (juegosCoinciden.length !== 0){
+            errors.title = 'Este juego ya existe.';
         }
         if (!values.developer) {
             errors.developer = 'Nombre requerido.';
-        } else if (!regexText.test(values.developer)) {
+        } else if (!regexText.test(values.developer) || values.developer.includes("  ") || values.developer.charAt(0) === " ") {
             errors.developer = 'Nombre invalido.';
         }
-        if (values.synopsis.length === 0) {
+        if (values.synopsis.length === 0 || values.synopsis.includes("  ") || values.synopsis.charAt(0) === " ") {
             errors.synopsis = 'Campo requerido.';
         }
-        if (values.image1.length === 0) {
+        if (values.image1.length === 0 || values.image1.includes("  ") || values.image1.charAt(0) === " ") {
             errors.image1 = 'Campo requerido.';
         }
-        if (values.image2.length === 0) {
+        if (values.image2.length === 0 || values.image2.includes("  ") || values.image2.charAt(0) === " ") {
             errors.image2 = 'Campo requerido.';
         }
-        if (values.image3.length === 0) {
+        if (values.image3.length === 0 || values.image3.includes("  ") || values.image3.charAt(0) === " ") {
             errors.image3 = 'Campo requerido.';
         }
-        if (values.image4.length === 0) {
+        if (values.image4.length === 0 || values.image4.includes("  ") || values.image4.charAt(0) === " ") {
             errors.image4 = 'Campo requerido.';
         }
         if (values.categorie.length <= 1) {

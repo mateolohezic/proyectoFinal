@@ -3,10 +3,13 @@ import ModalAñadirJuego from '../../Components/ModalAñadirJuego/ModalAñadirJu
 import './Admin.css';
 import axios from 'axios';
 import FilaJuegosAdmin from '../../Components/FilaJuegosAdmin/FilaJuegosAdmin';
+import ModalAñadirCategoria from '../../Components/ModalAñadirCategoria/ModalAñadirCategoria';
+import FilaCategoriaAdmin from '../../Components/FilaCategoriasAdmin/FilaCategoriasAdmin';
 
 function Admin() {
 
     const [juegos, setJuegos] = useState([])
+    const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
         axios.get(`http://localhost:8000/obtener-juegos`)
@@ -16,12 +19,23 @@ function Admin() {
         .catch((error) =>{
             console.log(error);
         })
-        console.log(juegos);
+
+    }, [])
+
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/categorias/obtener-categorias`)
+        .then((response) =>{
+            setCategorias(response.data);
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+
     }, [])
 
     return (
         <>
-        <div className="tituloPrincipal text-center mx-auto fs-1 border-bottom border-1 pb-4 w-75">Administración</div>
+        <div className="tituloPrincipal text-center mx-auto fs-1 border-bottom border-1 pb-4 w-75">Administración de Juegos</div>
         <div className="container-fluid row text-center justify-content-center mt-5 mb-5 m-0 p-0">
             <div className="col-12">
                 <div className="d-flex justify-content-between">
@@ -48,7 +62,7 @@ function Admin() {
                         <tbody>
 
                         {
-                            juegos.map(cadaJuego => <FilaJuegosAdmin key={cadaJuego._id} juego={cadaJuego} />)
+                            juegos.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)).sort((a, b) => +b.favorite-a.favorite).map(cadaJuego => <FilaJuegosAdmin key={cadaJuego._id} juego={cadaJuego} />)
                         }
 
                         </tbody>
@@ -56,6 +70,34 @@ function Admin() {
                 </div>
             </div>
         </div>
+        <div className="mt-5 text-center mx-auto fs-1 border-bottom border-1 pb-4 w-75">Administración de Categorías</div>
+        <div className="container-fluid row text-center justify-content-center mt-5 mb-5 m-0 p-0">
+            <div className="col-12">
+                <div className="d-flex flex-row-reverse">
+                    <div className="mb-3 me-1">
+                        <ModalAñadirCategoria />
+                    </div>
+                </div>
+                <div className="table-responsive mt-3">
+                    <table className="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Disponible</th>
+                            <th>Opciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            categorias.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(cadaCategoria => <FilaCategoriaAdmin key={cadaCategoria._id} categoria={cadaCategoria} />)
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
     </>
   )
 }
