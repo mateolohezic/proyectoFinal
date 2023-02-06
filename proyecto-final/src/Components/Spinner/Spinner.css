@@ -1,0 +1,12 @@
+.centered {
+    width: 10rem;
+    height: 10rem;
+  }
+
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+  }

@@ -5,7 +5,6 @@ import axios from 'axios';
 function CarouselDestacados() {
 
     const [destacados, setDestacados] = useState([])
-    const [idDestacados, setIdDestacados] = useState ([])
 
     useEffect(() =>{
         axios.get(`http://localhost:8000/obtener-juegos`)
