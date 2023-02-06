@@ -5,7 +5,6 @@ import ModalBorrarCategoria from '../ModalBorrarCategoria/ModalBorrarCategoria';
 import ModalEditarCategoria from '../ModalEditarCategoria/ModalEditarCategoria';
 
 function FilaCategoriaAdmin( categoria ) {
-    console.log(categoria.categoria.name);
     return (
     <>
         <tr>

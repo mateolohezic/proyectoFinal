@@ -1,15 +1,28 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import OpcionCategoria from '../OpcionCategoria/OpcionCategoria';
 import './FormularioCrearJuego.css';
 
 function FormularioCrearJuego() {
 
     const [juegos, setJuegos] = useState([])
+    const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
         axios.get(`http://localhost:8000/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+
+    }, [])
+
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/categorias/obtener-categorias`)
+        .then((response) =>{
+            setCategorias(response.data);
         })
         .catch((error) =>{
             console.log(error);
@@ -115,10 +128,9 @@ function FormularioCrearJuego() {
                         <label className="form-label">Categoría</label>
                         <select className="form-select" onChange={handleInputChange} name="categorie">
                             <option value="a">Seleccione una Categoría</option>
-                            <option value="Acción">Acción</option>
-                            <option value="Carreras">Carreras</option>
-                            <option value="Estrategia">Estrategia</option>
-                            <option value="Terror">Terror</option>
+                            {
+                            categorias.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(cadaCategoria => <OpcionCategoria key={cadaCategoria._id} categoria ={cadaCategoria} />)
+                            }
                         </select>
                         <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.categorie }</p>
                     </div>
