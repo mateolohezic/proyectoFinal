@@ -12,7 +12,7 @@ function ModalEditarJuego( juego ) {
 
     return (
         <>
-        <Button variant="danger" onClick={handleShow}><i className="bi bi-pencil-fill"></i></Button>
+        <Button variant="danger" onClick={handleShow}><i className="bi bi-pencil-fill fs-6"></i></Button>
         <Modal show={show} onHide={handleClose}  size="lg">
             <Modal.Header closeButton>
             <Modal.Title><h1 className="modal-title fs-5">Editar "{juego.juego.title}"</h1></Modal.Title>

@@ -6,8 +6,8 @@ import axios from 'axios';
 function Game() {
     
     const [juegoEspecifico, setJuegoEspecifico] = useState({});
-    const id = `63dd688f8df3d8a0af375e30`;
-
+    const id = localStorage.getItem('idJuego');
+    
     useEffect(() =>{
         axios.get(`http://localhost:8000/${id}`)
         .then((response) =>{
@@ -32,13 +32,13 @@ function Game() {
             <div className='w-100'>
                 <div className="column text-white text-start divFichaTecnica">
                     <div className="mt-5 fichaTecnicaTexto fs-1">Ficha técnica</div>
-                    <div className="fs-3 ps-2 mt-5">{juegoEspecifico.title}</div>
-                    <div className="fs-6 ps-2 text-white text-opacity-75">Desarrollador: {juegoEspecifico.developer}</div>
-                    <div className="fs-6 ps-2 text-white text-opacity-75">Categoría: {juegoEspecifico.categorie}</div>
-                    <div className="fs-6 ps-2 text-white text-opacity-75">Fecha de Estreno: {juegoEspecifico.date}</div>
-                    <div className="fs-1 ps-2 mt-2">$   {juegoEspecifico.price} ARS</div>
-                    <div className="fs-3 ps-2 mt-2">Descripción</div>
-                    <div className="mt-2 ps-2 fs-5 text-white text-opacity-75">{juegoEspecifico.synopsis}</div>
+                    <div className="fs-3 ms-4 ps-2 mt-5">{juegoEspecifico.title}</div>
+                    <div className="fs-6 ms-4 ps-2 text-white text-opacity-75">Desarrollador: {juegoEspecifico.developer}</div>
+                    <div className="fs-6 ms-4 ps-2 text-white text-opacity-75">Categoría: {juegoEspecifico.categorie}</div>
+                    <div className="fs-6 ms-4 ps-2 text-white text-opacity-75">Fecha de Estreno: {juegoEspecifico.date}</div>
+                    <div className="fs-1 ms-4 ps-2 mt-2">$   {juegoEspecifico.price} ARS</div>
+                    <div className="fs-3 ms-4 ps-2 mt-2">Descripción</div>
+                    <div className="mt-2 ms-4 ps-2 pe-5 fs-5 text-white text-opacity-75 descripcionTexto">{juegoEspecifico.synopsis}</div>
                 </div>
             </div>
             <div className="d-flex flex-row-reverse fixedBottom m-5">

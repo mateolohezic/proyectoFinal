@@ -24,7 +24,7 @@ function BotonHacerFavorito( juego ) {
     
     return (
     <>
-        <button type="button" className="btn btn-danger" onClick={hacerFavorito}><i className="bi bi-star"></i></button>
+        <button type="button" className="btn btn-danger" onClick={hacerFavorito}><i className="bi bi-star fs-6"></i></button>
     </>
     )
 

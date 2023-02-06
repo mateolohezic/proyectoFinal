@@ -20,7 +20,7 @@ function ModalBorrarJuego(juego) {
 
     return (
         <>
-        <Button variant="danger" onClick={handleShow}><i className="bi bi-trash"></i></Button>
+        <Button variant="danger" onClick={handleShow}><i className="bi bi-trash fs-6"></i></Button>
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
             <Modal.Title><h1 className="modal-title fs-5">{juego.juego.title}</h1></Modal.Title>

@@ -24,7 +24,7 @@ function BotonQuitarPublico( juego ) {
     
     return (
     <>
-        <button type="button" className="btn btn-danger" onClick={quitarPublico}><i className="bi bi-bag-check-fill"></i></button>
+        <button type="button" className="btn btn-danger" onClick={quitarPublico}><i className="bi bi-bag-check-fill fs-6"></i></button>
     </>
     )
 

@@ -24,7 +24,7 @@ function BotonHacerPublico( juego ) {
     
     return (
     <>
-        <button type="button" className="btn btn-danger" onClick={hacerPublico}><i className="bi bi-bag-check"></i></button>
+        <button type="button" className="btn btn-danger" onClick={hacerPublico}><i className="bi bi-bag-check fs-6"></i></button>
     </>
     )
 

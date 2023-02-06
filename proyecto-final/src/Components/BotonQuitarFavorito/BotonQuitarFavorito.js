@@ -23,7 +23,7 @@ function BotonQuitarFavorito( juego ) {
     }
     return (
     <>
-        <button type="button" className="btn btn-danger" onClick={quitarFavorito}><i className="bi bi-star-fill"></i></button>
+        <button type="button" className="btn btn-danger" onClick={quitarFavorito}><i className="bi bi-star-fill fs-6"></i></button>
     </>
     )
     
