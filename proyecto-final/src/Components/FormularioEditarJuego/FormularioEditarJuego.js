@@ -52,7 +52,7 @@ function FormularioEditarJuego(juego) {
                                 value: /^[a-zA-Z0-9áéíóú ]{1,50}$/i,
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>Nombre invalido.</p>
                             },
-                        })} name="title" defaultValue={juego.juego.juego.title} />
+                        })} name="title" defaultValue={juego.juego.juego.title} maxLength={50}/>
                         {errors.title && errors.title.message}
                     </div>
                     <div className="mb-3 col">
@@ -64,7 +64,7 @@ function FormularioEditarJuego(juego) {
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>Nombre invalido.</p>
                             }
                             
-                        })} name="developer" defaultValue={juego.juego.juego.developer} />
+                        })} name="developer" defaultValue={juego.juego.juego.developer} maxLength={50}/>
                         {errors.developer && errors.developer.message}
                     </div>
                 </div>
@@ -94,7 +94,7 @@ function FormularioEditarJuego(juego) {
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>Debe ser menor a 2024.</p>
                             },
                             
-                        })} name="date" defaultValue={juego.juego.juego.date} />
+                        })} name="date" defaultValue={juego.juego.juego.date} max={9999}/>
                         {errors.date && errors.date.message}
                     </div>
                 </div>                                       
@@ -107,7 +107,7 @@ function FormularioEditarJuego(juego) {
                                 value: 30000,
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>Debe ser menor a $30.000</p>
                             },                            
-                        })} name="price" defaultValue={juego.juego.juego.price} />
+                        })} name="price" defaultValue={juego.juego.juego.price} max={99999}/>
                         <div className="form-text">Si el juego es gratis, inserte 0.</div>
                         {errors.price && errors.price.message}
                     </div>
@@ -120,7 +120,7 @@ function FormularioEditarJuego(juego) {
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>Descripción invalida.</p>
                             }
                             
-                        })} name="synopsis" defaultValue={juego.juego.juego.synopsis} />
+                        })} name="synopsis" defaultValue={juego.juego.juego.synopsis} maxLength={1000}/>
                         {errors.synopsis && errors.synopsis.message}
                     </div>
                 </div>
@@ -130,11 +130,11 @@ function FormularioEditarJuego(juego) {
                         <input type="text" className="form-control" {...register("image1", {
                             required: <p className='text-danger mt-2 ms-1 fs-6'>Link requerido.</p>,
                             maxLength : {
-                                value: 5000,
+                                value: 1000,
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>Link invalido.</p>,
                             }
                             
-                        })} name="image1" defaultValue={juego.juego.juego.image1} />
+                        })} name="image1" defaultValue={juego.juego.juego.image1} maxLength={1000}/>
                         {errors.image1 && errors.image1.message}
                     </div>
                     <div className="mb-3 col">
@@ -142,11 +142,11 @@ function FormularioEditarJuego(juego) {
                         <input type="text" className="form-control" {...register("image2", {
                             required: <p className='text-danger mt-2 ms-1 fs-6'>Link requerido.</p>,
                             maxLength : {
-                                value: 5000,
+                                value: 1000,
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>Link invalido.</p>,
                             }
                             
-                        })} name="image2" defaultValue={juego.juego.juego.image2} />
+                        })} name="image2" defaultValue={juego.juego.juego.image2} maxLength={1000}/>
                         {errors.image2 && errors.image2.message}
                     </div>
                 </div>
@@ -156,11 +156,11 @@ function FormularioEditarJuego(juego) {
                         <input type="text" className="form-control" {...register("image3", {
                             required: <p className='text-danger mt-2 ms-1 fs-6'>Link requerido.</p>,
                             maxLength : {
-                                value: 5000,
+                                value: 1000,
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>Link invalido.</p>,
                             }
                             
-                        })} name="image3" defaultValue={juego.juego.juego.image3} />
+                        })} name="image3" defaultValue={juego.juego.juego.image3} maxLength={1000}/>
                         {errors.image3 && errors.image3.message}
                     </div>
                     <div className="mb-3 col">
@@ -168,11 +168,11 @@ function FormularioEditarJuego(juego) {
                         <input type="text" className="form-control" {...register("image4", {
                             required: <p className='text-danger mt-2 ms-1 fs-6'>Link requerido.</p>,
                             maxLength : {
-                                value: 5000,
+                                value: 1000,
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>Link invalido.</p>,
                             }
                             
-                        })} name="image4" defaultValue={juego.juego.juego.image4} />
+                        })} name="image4" defaultValue={juego.juego.juego.image4} maxLength={1000}/>
                         {errors.image4 && errors.image4.message}
                     </div>
                 </div>

@@ -24,10 +24,10 @@ function FormularioEditarCategoria( categoria ) {
                     <input type="text" className="form-control"{...register("name", {
                         required: <p className='text-danger mt-2 ms-1 fs-6'>Nombre requerido.</p>,
                         pattern: {
-                            value: /^[a-zA-ZáéíóúñÑÁÉÍÓÚ ]{1,50}$/i,
+                            value: /^[a-zA-ZáéíóúñÑÁÉÍÓÚ ]{1,20}$/i,
                             message: <p className='text-danger mt-2 ms-1 fs-6'>Nombre invalido.</p>
                         },
-                    })} name="name" defaultValue={categoria.categoria.categoria.name}/>
+                    })} name="name" defaultValue={categoria.categoria.categoria.name} maxLength={20}/>
                     {errors.name && errors.name.message}
                 </div>
             </div>

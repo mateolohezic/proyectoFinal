@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 function FormularioIniciarSesion() {
 
-    const { register, watch, reset, handleSubmit, formState: { errors } } = useForm();
+    const { register, watch, handleSubmit, formState: { errors } } = useForm();
     const [userEncontrado, setUserEncontrado] = useState({})
     const [users, setUsers] = useState([
     {
@@ -31,7 +31,6 @@ function FormularioIniciarSesion() {
 
     const usersCoinciden = users.filter(user => user.username === watch(`username`))
 
-
     useEffect(() =>{
         setUserEncontrado(usersCoinciden[0])
     }, [usersCoinciden.length])
@@ -44,6 +43,8 @@ function FormularioIniciarSesion() {
                     <label className="form-label">Usuario</label>
                     <input type="text" className="form-control" {...register("username", {
                         required:  <p className='text-danger mt-2 ms-1 fs-6'>Usuario requerido.</p>,
+                        validate: value => usersCoinciden.length === 1 || 
+                        <p className='text-danger mt-2 ms-1 fs-6'>Usuario inexistente.</p>,
                     })}  name="username"  defaultValue="" maxLength={20}/>
                     {errors.username && errors.username.message}
                 </div>
@@ -53,8 +54,8 @@ function FormularioIniciarSesion() {
                     <label className="form-label">Contraseña</label>
                     <input type="text" className="form-control" {...register("password", {
                         required:  <p className='text-danger mt-2 ms-1 fs-6'>Contraseña requerida.</p>,
-                        validate: value => value === userEncontrado.password
-                         || <p className='text-danger mt-2 ms-1 fs-6'>Usuario o contraseña incorrectos.</p>
+                        validate: value => value === userEncontrado.password ||
+                        <p className='text-danger mt-2 ms-1 fs-6'>Usuario o contraseña incorrectos.</p>,
                     })}  name="password"  defaultValue="" maxLength={25}/>
                     {errors.password && errors.password.message}
                 </div>
