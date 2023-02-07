@@ -2,9 +2,11 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import OpcionCategoria from '../OpcionCategoria/OpcionCategoria';
 import './FormularioCrearJuego.css';
+import { useForm } from "react-hook-form";
 
 function FormularioCrearJuego() {
 
+    const { register, watch, handleSubmit, formState: { errors } } = useForm();
     const [juegos, setJuegos] = useState([])
     const [categorias, setCategorias] = useState([])
 
@@ -30,149 +32,148 @@ function FormularioCrearJuego() {
 
     }, [])
 
-    const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
-    const [datos, setDatos] = useState({
-        title: '',
-        developer: '',
-        categorie: '',
-        date: 0,
-        price: 0,
-        synopsis: '',
-        image1: '',
-        image2: '',
-        image3: '',
-        image4: ''
-    });
-
-    const handleInputChange = (event) => {
-        setDatos({
-            ...datos,
-            [event.target.name] : event.target.value
-        })
-        setFormErrors(validate(datos));
-    }
-
-    const validate =  (values) => {
-        const errors = {}
-        const regexText = /^[a-z0-9 ,.'-]{1,300}$/i;
-        const juegosCoinciden = juegos.filter(juego => juego.title === values.title)
-        if (!values.title) {
-            errors.title = 'Titulo requerido.';
-        } else if (!regexText.test(values.title) || values.title.includes("  ") || values.title.charAt(0) === " ") {
-            errors.title = 'Titulo invalido.';
-        } else if (juegosCoinciden.length !== 0){
-            errors.title = 'Este juego ya existe.';
-        }
-        if (!values.developer) {
-            errors.developer = 'Nombre requerido.';
-        } else if (!regexText.test(values.developer) || values.developer.includes("  ") || values.developer.charAt(0) === " ") {
-            errors.developer = 'Nombre invalido.';
-        }
-        if (values.synopsis.length === 0 || values.synopsis.includes("  ") || values.synopsis.charAt(0) === " ") {
-            errors.synopsis = 'Campo requerido.';
-        }
-        if (values.image1.length === 0 || values.image1.includes("  ") || values.image1.charAt(0) === " ") {
-            errors.image1 = 'Campo requerido.';
-        }
-        if (values.image2.length === 0 || values.image2.includes("  ") || values.image2.charAt(0) === " ") {
-            errors.image2 = 'Campo requerido.';
-        }
-        if (values.image3.length === 0 || values.image3.includes("  ") || values.image3.charAt(0) === " ") {
-            errors.image3 = 'Campo requerido.';
-        }
-        if (values.image4.length === 0 || values.image4.includes("  ") || values.image4.charAt(0) === " ") {
-            errors.image4 = 'Campo requerido.';
-        }
-        if (values.categorie.length <= 1) {
-            console.log(values.categorie);
-            errors.categorie = 'Campo requerido.';
-        }
-        return errors;
-    }
-
-    const enviarDatos = (event) => { 
-        event.preventDefault();
-        if (isSubmit === true) {
-        axios.post(`http://localhost:8000/crear-juego`, datos)
+    const onSubmit = (data) => {
+        axios.post(`http://localhost:8000/crear-juego`, data)
         window.location.reload(true)
-        }
-
     }
 
-    useEffect(() => {
-
-        setIsSubmit(false)
-        if(Object.keys(formErrors).length === 0){
-        setIsSubmit(true)
-        }
-    }, [handleInputChange])
+    const juegosCoinciden = juegos.filter(juego => juego.title === watch('title'))
 
     return (
         <>
-            <form onSubmit={enviarDatos}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Titulo</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="title" value={datos.title} />
-                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.title }</p>
+                        <input type="text" className="form-control" {...register("title", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Nombre requerido.</p>,
+                            pattern: {
+                                value: /^[a-zA-Z0-9áéíóú ]{1,50}$/i,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Nombre invalido.</p>
+                            },
+                            validate: value => juegosCoinciden.length === 0 || <p className='text-danger mt-2 ms-1 fs-6'>Este juego ya existe.</p>
+                        })} name="title" defaultValue="" />
+                        {errors.title && errors.title.message}
                     </div>
                     <div className="mb-3 col">
                         <label className="form-label">Desarrollador</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="developer" value={datos.developer} />
-                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.developer }</p>
+                        <input type="text" className="form-control" {...register("developer", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Nombre requerido.</p>,
+                            pattern: {
+                                value: /^[a-zA-Z0-9áéíóú ]{1,50}$/i,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Nombre invalido.</p>
+                            }
+                            
+                        })} name="developer" defaultValue="" />
+                        {errors.developer && errors.developer.message}
                     </div>
                 </div>
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Categoría</label>
-                        <select className="form-select" onChange={handleInputChange} name="categorie">
-                            <option value="a">Seleccione una Categoría</option>
+                        <select className="form-select" {...register("categorie", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Seleccione una opción.</p>
+                        })} name="categorie" defaultValue="">
+                            <option value="">Seleccione una Categoría</option>
                             {
-                            categorias.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(cadaCategoria => <OpcionCategoria key={cadaCategoria._id} categoria ={cadaCategoria} />)
+                                categorias.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(cadaCategoria => <OpcionCategoria key={cadaCategoria._id} categoria ={cadaCategoria} />)
                             }
                         </select>
-                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.categorie }</p>
+                        {errors.categorie && errors.categorie.message}
                     </div>
                     <div className="mb-3 col">
                         <label className="form-label">Fecha de Estreno</label>
-                        <input type="number" className="form-control" onChange={handleInputChange} name="date" min="1952" max="2024" required/>
+                        <input type="number" className="form-control" {...register("date", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Fecha requerida.</p>,
+                            min: {
+                                value: 1950,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Debe ser mayor a 1950.</p>
+                            },
+                            max: {
+                                value: 2024,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Debe ser menor a 2024.</p>
+                            },
+                            
+                        })} name="date" defaultValue="" />
+                        {errors.date && errors.date.message}
                     </div>
                 </div>                                       
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Precio</label>
-                        <input type="number" className="form-control" onChange={handleInputChange} name="price" min="0" max="30000" required/>
+                        <input type="number" className="form-control"{...register("price", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Precio requerido.</p>,
+                            max: {
+                                value: 30000,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Debe ser menor a $30.000</p>
+                            },                            
+                        })} name="price" defaultValue="" />
                         <div className="form-text">Si el juego es gratis, inserte 0.</div>
+                        {errors.price && errors.price.message}
                     </div>
                     <div className="mb-3 col">
                         <label className="form-label">Descripción</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="synopsis" maxLength="200"/>
-                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.synopsis }</p>
+                        <input type="text" className="form-control" {...register("synopsis", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Descripción requerida.</p>,
+                            pattern: {
+                                value: /^[a-zA-Z0-9áéíóú:,." ]{1,1000}$/i,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Descripción invalida.</p>
+                            }
+                            
+                        })} name="synopsis" defaultValue="" />
+                        {errors.synopsis && errors.synopsis.message}
                     </div>
                 </div>
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Portada</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="image1" value={datos.image1} />
-                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.image1 }</p>
+                        <input type="text" className="form-control" {...register("image1", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Link requerido.</p>,
+                            maxLength : {
+                                value: 5000,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Link invalido.</p>,
+                            }
+                            
+                        })} name="image1" defaultValue="" />
+                        {errors.image1 && errors.image1.message}
                     </div>
                     <div className="mb-3 col">
                         <label className="form-label">Imagen 2</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="image2" value={datos.image2} />
-                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.image2 }</p>
+                        <input type="text" className="form-control" {...register("image2", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Link requerido.</p>,
+                            maxLength : {
+                                value: 5000,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Link invalido.</p>,
+                            }
+                            
+                        })} name="image2" defaultValue="" />
+                        {errors.image2 && errors.image2.message}
                     </div>
                 </div>
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Imagen 3</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="image3" value={datos.image3} />
-                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.image3 }</p>
+                        <input type="text" className="form-control" {...register("image3", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Link requerido.</p>,
+                            maxLength : {
+                                value: 5000,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Link invalido.</p>,
+                            }
+                            
+                        })} name="image3" defaultValue="" />
+                        {errors.image3 && errors.image3.message}
                     </div>
                     <div className="mb-3 col">
                         <label className="form-label">Imagen 4</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="image4" value={datos.image4} />
-                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.image4 }</p>
+                        <input type="text" className="form-control" {...register("image4", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Link requerido.</p>,
+                            maxLength : {
+                                value: 5000,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Link invalido.</p>,
+                            }
+                            
+                        })} name="image4" defaultValue="" />
+                        {errors.image4 && errors.image4.message}
                     </div>
                 </div>
                 <div className="modal-footer">

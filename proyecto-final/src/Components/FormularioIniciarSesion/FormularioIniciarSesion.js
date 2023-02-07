@@ -1,9 +1,17 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import { useForm } from "react-hook-form";
 
-function FormularioCrearUser() {
+function FormularioIniciarSesion() {
 
-    const [users, setUsers] = useState([])
+    const { register, watch, reset, handleSubmit, formState: { errors } } = useForm();
+    const [userEncontrado, setUserEncontrado] = useState({})
+    const [users, setUsers] = useState([
+    {
+        username: "",
+        password: ""
+    }
+    ])
 
     useEffect(() =>{
       axios.get(`http://localhost:8000/users/obtener-users`)
@@ -15,64 +23,55 @@ function FormularioCrearUser() {
       })
   }, [])
 
-    const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
-    const [datos, setDatos] = useState({
-        username: '',
-        password: '',
-        
-    });
-
-    const handleInputChange = (event) => {
-        setDatos({
-            ...datos,
-            [event.target.name] : event.target.value
-        })
-    }
-
-    const validate =  (values) => {
-        const errors = {}
-        const regexUsername = /^[a-z0-9 ,.'-]{4,20}$/i;
-        const regexPassword = /^([a-zA-Z0-9*#$-_+"!%&]{6,25})$/i;
-        const usersCoinciden = users.filter(user => user.username === values.username && user.password === values.password)
-        if (!values.username) {
-            errors.username = 'Usuario requerido.';
-        } else if (!regexUsername.test(values.username) || values.username.includes("  ") || values.username.charAt(0) === " ") {
-            errors.username = 'Usuario invalido.';
-        }
-        if (!values.password) {
-            errors.password = 'Contraseña requerida.';
-        } else if (!regexPassword.test(values.password) || values.password.includes("  ") || values.password.charAt(0) === " ") {
-            errors.password = 'Contraseña invalida.';
-        }
-        if (usersCoinciden.length === 0) {
-            errors.password = 'Datos incorrectos.';
-        }
-        return errors;
-    }
-
-    const enviarDatos = (event) => { 
-        event.preventDefault();
-        setFormErrors(validate(datos));
-        if (isSubmit === true) {
-        axios.post(`http://localhost:8000/users/crear-user`, datos)
+    const onSubmit = () => {
+        localStorage.setItem('estadoLogeado', userEncontrado.rol);
+        localStorage.setItem('idUsuarioLogeado', userEncontrado._id);
         window.location.replace('/');
-        }
-
     }
 
-    useEffect(() => {
-        setIsSubmit(false)
-        if(Object.keys(formErrors).length === 0){
-        setIsSubmit(true)
-        }
-    }, [handleInputChange])
+    const usersCoinciden = users.filter(user => user.username === watch(`username`))
+
+
+    useEffect(() =>{
+        setUserEncontrado(usersCoinciden[0])
+    }, [usersCoinciden.length])
 
     return (
         <>
-
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="row">
+                <div className="mb-3 col-xxl-12 col-xl-12 col-lg-12 col-sm-12 col-md-12">
+                    <label className="form-label">Usuario</label>
+                    <input type="text" className="form-control" {...register("username", {
+                        required:  <p className='text-danger mt-2 ms-1 fs-6'>Usuario requerido.</p>,
+                    })}  name="username"  defaultValue="" maxLength={20}/>
+                    {errors.username && errors.username.message}
+                </div>
+                </div>
+                <div className="row">
+                <div className="mb-3 col-xxl-12 col-xl-12 col-lg-12 col-sm-12 col-md-12">
+                    <label className="form-label">Contraseña</label>
+                    <input type="text" className="form-control" {...register("password", {
+                        required:  <p className='text-danger mt-2 ms-1 fs-6'>Contraseña requerida.</p>,
+                        validate: value => value === userEncontrado.password
+                         || <p className='text-danger mt-2 ms-1 fs-6'>Usuario o contraseña incorrectos.</p>
+                    })}  name="password"  defaultValue="" maxLength={25}/>
+                    {errors.password && errors.password.message}
+                </div>
+                </div>
+                <div className="text-end mt-2 mb-4">
+                    ¿No tienes una cuenta?
+                    <a className="registerIniciarSesion ms-2" href="/Register">Regístrate</a>
+                    <div>
+                    ¿Olvidaste tu contraseña? <a className="registerIniciarSesion ms-2" href='/'>Restablecer</a>
+                    </div>
+                </div>
+                <div className="d-flex flex-row-reverse mt-3">
+                    <button type="submit" className="btn  btn-danger">Iniciar Sesión</button>
+                </div>
+            </form>
         </>
   )
 }
 
-export default FormularioCrearUser
+export default FormularioIniciarSesion

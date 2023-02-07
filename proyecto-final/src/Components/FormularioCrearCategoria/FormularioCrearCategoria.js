@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import { useForm } from "react-hook-form";
 
 function FormularioCrearCategoria() {
 
+    const { register, watch, handleSubmit, formState: { errors } } = useForm();
     const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
@@ -16,58 +18,28 @@ function FormularioCrearCategoria() {
 
     }, [])
 
-    const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
-    const [datos, setDatos] = useState({
-        name: '',
-    });
-
-    const handleInputChange = (event) => {
-        setDatos({
-            ...datos,
-            [event.target.name] : event.target.value
-        })
-        setFormErrors(validate(datos));
+    const onSubmit = (data) => {
+        axios.post(`http://localhost:8000/categorias/crear-categoria`, data)
+        window.location.reload(true);
     }
 
-    const validate =  (values) => {
-        const errors = {}
-        const regexText = /^[a-zA-Z]{1,300}$/i;
-        const categoriasCoinciden = categorias.filter(categoria => categoria.name === values.name)
-        if (!values.name) {
-            errors.name = 'Nombre requerido.';
-        } else if (!regexText.test(values.title) || values.name.includes("  ") || values.name.charAt(0) === " ") {
-            errors.name = 'Nombre invalido.';
-        } else if (categoriasCoinciden.length !== 0){
-            errors.name = 'Este juego ya existe.';
-        }
-        return errors;
-    }
-
-    const enviarDatos = (event) => { 
-        event.preventDefault();
-        if (isSubmit === true) {
-        axios.post(`http://localhost:8000/categorias/crear-categoria`, datos)
-        window.location.reload(true)
-        }
-
-    }
-
-    useEffect(() => {
-        setIsSubmit(false)
-        if(Object.keys(formErrors).length === 0){
-        setIsSubmit(true)
-        }
-    }, [handleInputChange])
+    const categoriasCoinciden = categorias.filter(categoria => categoria.name === watch('name'))
 
     return (
         <>
-            <form onSubmit={enviarDatos}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                     <div className="mb-3 col">
                         <label className="form-label">Nombre de la Categoría</label>
-                        <input type="text" className="form-control" onChange={handleInputChange} name="name" value={datos.name} required/>
-                        <p className='text-danger mt-2 ms-1 fs-6'>{ formErrors.title }</p>
+                        <input type="text" className="form-control" {...register("name", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Nombre requerido.</p>,
+                            pattern: {
+                                value: /^[a-zA-ZáéíóúñÑÁÉÍÓÚ ]{1,50}$/i,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Nombre invalido.</p>
+                            },
+                            validate: value => categoriasCoinciden.length === 0 || <p className='text-danger mt-2 ms-1 fs-6'>Esta categoría ya existe.</p>
+                        })} name="name" defaultValue=""/>
+                        {errors.name && errors.name.message}
                     </div>
                 </div>
                 <div className="modal-footer">
