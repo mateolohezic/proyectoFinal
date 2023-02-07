@@ -1,0 +1,19 @@
+.accordion-button:not(.collapsed) {
+    background-color: white;
+    color: black;
+
+}
+
+.accordion-button:focus {
+    border-color: white;
+}
+
+.accordion {
+    --bs-accordion-btn-focus-border-color: white;
+    --bs-accordion-active-color: white;
+    --bs-accordion-active-bg: white;
+}
+
+.divAccordionCategorias{
+    box-shadow: 0px 0px 51px -4px rgba(0,0,0,0.75);
+}

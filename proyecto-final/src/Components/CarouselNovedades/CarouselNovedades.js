@@ -124,9 +124,9 @@ function CarouselNovedades() {
                 </div>
                 <span type="button" className="botonCarousel align-self-center fs-5" data-bs-target="#carouselNovedades" data-bs-slide="next"><i className="bi bi-caret-right-fill"></i></span>
             </div>
-            <div className="row justify-content-evenly cajaCarouselNovedades carouselChico align-middle mx-auto mt-4 container-fluid">
+            <div className="row justify-content-evenly cajaCarouselNovedades carouselChico p-0 align-middle mx-auto mt-4 container-fluid">
                 <span type="button" className="botonCarousel align-self-center fs-5 pe-4" data-bs-target="#carouselNovedades2" data-bs-slide="prev"><i className="bi bi-caret-left-fill"></i></span>
-                <div id="carouselNovedades2" className="carousel slide widthCarousel align-self-center" data-bs-ride="carousel">
+                <div id="carouselNovedades2" className="carousel slide widthCarousel align-self-center p-0" data-bs-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active">
                             <a href='/Game' className='text-decoration-none text-dark' onClick={ () => localStorage.setItem('idJuego',novedades[0]._id)}>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import CarouselDestacados from '../../Components/CarouselDestacados/CarouselDestacados';
 import './Home.css';
 import CarouselNovedades from '../../Components/CarouselNovedades/CarouselNovedades';
+import AccordionCategorias from '../../Components/AccordionCategorias/AccordionCategorias';
 
 function Home() {
 
@@ -27,6 +28,7 @@ function Home() {
         destacados.length > 0 ? <CarouselDestacados /> : <></>
       }
         <CarouselNovedades />
+        <AccordionCategorias />
       </div>
       </>
     )

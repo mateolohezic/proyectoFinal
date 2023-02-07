@@ -16,7 +16,6 @@ function Game() {
         .catch((error) =>{
             console.log(error);
         })
-        console.log(juegoEspecifico.imagenes);
     }, [])
 
     return (
@@ -36,13 +35,14 @@ function Game() {
                     <div className="fs-6 ms-4 ps-2 text-white text-opacity-75">Desarrollador: {juegoEspecifico.developer}</div>
                     <div className="fs-6 ms-4 ps-2 text-white text-opacity-75">Categoría: {juegoEspecifico.categorie}</div>
                     <div className="fs-6 ms-4 ps-2 text-white text-opacity-75">Fecha de Estreno: {juegoEspecifico.date}</div>
-                    <div className="fs-1 ms-4 ps-2 mt-2">$   {juegoEspecifico.price} ARS</div>
+                    
+                    <div className="fs-1 ms-4 ps-2 mt-2">{ juegoEspecifico.price > 0 ? <>$ {juegoEspecifico.price} ARS</>  : <>Descargar gratis</> }</div>
                     <div className="fs-3 ms-4 ps-2 mt-2">Descripción</div>
                     <div className="mt-2 ms-4 ps-2 pe-5 fs-5 text-white text-opacity-75 descripcionTexto">{juegoEspecifico.synopsis}</div>
                 </div>
             </div>
             <div className="d-flex flex-row-reverse fixedBottom m-5">
-                <a href="/404"><button type="button" className="btn btn-darkk btn-lg">Comprar</button></a>
+                <a href="/404"><button type="button" className="btn btn-darkk btn-lg">{ juegoEspecifico.price > 0 ? <>Comprar</>  : <>Descargar</> }</button></a>
             </div>
         </div>
     </>

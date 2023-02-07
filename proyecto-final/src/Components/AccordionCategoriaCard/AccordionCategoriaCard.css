@@ -1,0 +1,96 @@
+@media (max-width: 576px){
+    .flexCategorias{
+        gap: 6%;
+    }
+
+    .cardCategoria{
+        border-radius: 5%;
+        width: 47%;
+        height: 30vw;
+    }
+
+    .imgCardCategoria{
+        height: 20vw;
+        width: 100%;
+    }
+
+    .imagenCardCategoria{
+        border-radius: 15%;
+        min-height: 20vw;
+        max-height: 20vw;
+        width: 100%;
+    }
+
+    .tamañoLetraCardCategoria{
+        font-size: 0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+@media (min-width:576px) and (max-width: 992px){
+    .flexCategorias{
+        gap: 2%;
+    }
+
+    .cardCategoria{
+        border-radius: 5%;
+        width: 23%;
+        height: 24vw;
+    }
+
+    .imgCardCategoria{
+        height: 12vw;
+        width: 100%;
+    }
+
+    .imagenCardCategoria{
+        border-radius: 15%;
+        min-height: 12vw;
+        max-height: 12vw;
+        width: 100%;
+    }
+
+    .tamañoLetraCardCategoria{
+        font-size: 0.68rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+@media (min-width: 992px){
+    .flexCategorias{
+        gap: 1.25%;
+    }
+
+    .cardCategoria{
+        border-radius: 5%;
+        width: 19%;
+        height: 20vw;
+    }
+    .imgCardCategoria{
+        height: 10vw;
+        width: 100%;
+    }
+
+    .imagenCardCategoria{
+        border-radius: 15%;
+        min-height: 10vw;
+        max-height: 10vw;
+        width: 100%;
+    }
+
+    .tamañoLetraCardCategoria{
+        font-size: 1rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+.cardCategoria{
+    border: 0;
+    box-shadow: 0px 0px 27px -12px rgba(0,0,0,0.75);
+}
+
+.cardCategoria:hover{
+    cursor: pointer;
+}
