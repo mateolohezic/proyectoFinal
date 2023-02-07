@@ -2,6 +2,7 @@ import React, {useState, useEffect } from 'react'
 import axios from 'axios';
 import CarouselDestacados from '../../Components/CarouselDestacados/CarouselDestacados';
 import './Home.css';
+import CarouselNovedades from '../../Components/CarouselNovedades/CarouselNovedades';
 
 function Home() {
 
@@ -10,7 +11,7 @@ function Home() {
     useEffect(() =>{
       axios.get(`http://localhost:8000/obtener-juegos`)
       .then((response) =>{
-          setDestacados(response.data.filter(juego => juego.favorite === true ));
+          setDestacados(response.data.filter(juego => juego.favorite === true && juego.published === true));
 
       })
       .catch((error) =>{
@@ -20,11 +21,13 @@ function Home() {
 
 
     return (
-      
-      <>
+      <>     
+      <div className="fondoHome">
       {
         destacados.length > 0 ? <CarouselDestacados /> : <></>
       }
+        <CarouselNovedades />
+      </div>
       </>
     )
 }

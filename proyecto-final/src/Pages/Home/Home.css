@@ -1,7 +1,13 @@
-/* body{
+html{
+    height: 100%;
+}
+
+.fondoHome{
+    height: 100%;
     background: url(./fondo.png) no-repeat center center fixed;
     background-size: cover;
-} */
+    padding-bottom: 1rem;
+}
 
 .tituloSeccion{
     border: 0.3rem solid #E3E3E3;

@@ -1,0 +1,30 @@
+.fondoRegister{
+    background: url(./fondo.png) no-repeat center center fixed;
+    background-size: cover;
+    padding: 5rem;
+}
+
+.registerIniciarSesion{
+    color: #CB3737;
+    text-decoration: none;
+}
+
+.registerIniciarSesion:hover{
+    color: #EE6F57;
+}
+
+.formularioRegister{
+    background-color: white;
+    box-shadow: 0px 0px 54px 12px rgba(0,0,0,0.75);
+    width: 50%;
+    padding-top: 5rem;
+    border-radius: 0.2rem;
+}
+
+.bgColor{
+    background-color: #495664;
+}
+
+.registro:hover{
+    color: #7a81b6;
+}

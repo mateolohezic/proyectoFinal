@@ -1,0 +1,26 @@
+.fondoLogin{
+    background: url(./fondo.png) no-repeat center center fixed;
+    background-size: cover;
+    padding: 5rem;
+}
+
+.formularioLogin{
+    background-color: white;
+    box-shadow: 0px 0px 54px 12px rgba(0,0,0,0.75);
+    width: 40%;
+    padding-top: 5rem;
+    border-radius: 0.2rem;
+}
+
+.bgColor{
+    background-color: #495664;
+}
+
+.registro{
+    color: #F8FCEB;
+    text-decoration: none;
+}
+
+.registro:hover{
+    color: #7a81b6;
+}
