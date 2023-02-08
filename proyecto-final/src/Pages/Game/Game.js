@@ -43,7 +43,15 @@ function Game() {
 
     }, [])
 
-    // const comentariosCoinciden = [];
+    const agregarCarrito = () =>{
+        axios.post(`http://localhost:8000/carrito/crear-carrito`, {
+            title: juegoEspecifico.title,
+            price: juegoEspecifico.price,
+            image1: juegoEspecifico.image1
+        })
+        window.location.replace("/Carrito");
+    }
+        
     const comentariosCoinciden = comentarios.filter(comentario => comentario.game === juegoEspecifico.title);
 
     useEffect(() =>{
@@ -80,9 +88,14 @@ function Game() {
                     }
                 </div>
             </div>
-            <div className="d-flex flex-row-reverse fixedBottom m-5">
-                <a href="/404"><button type="button" className="btn btn-darkk btn-lg">{ juegoEspecifico.price > 0 ? <>Comprar</>  : <>Descargar</> }</button></a>
-            </div>
+                    {   logeado && 
+                    <>
+                    <div className="d-flex flex-row-reverse fixedBottom m-5">
+                        <button type="button" className="btn btn-darkk btn-lg" onClick={agregarCarrito}>{ juegoEspecifico.price > 0 ? <>Comprar</>  : <>Descargar</> }</button>
+                    </div>
+                    </>
+                    }
+            
         </div>
     </>
   )

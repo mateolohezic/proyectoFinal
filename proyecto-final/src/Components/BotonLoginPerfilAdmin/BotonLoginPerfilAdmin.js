@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function BotonLoginPerfilAdmin() {
 
+    const [carrito, setCarrito] = useState([])
     const [users, setUsers] = useState("")
     const id = localStorage.getItem('idUsuarioLogeado');
 
@@ -19,9 +20,25 @@ function BotonLoginPerfilAdmin() {
     }, [users])
 
     const cerrarSesion = () => {
+        carrito.map(juego => {
+            axios.delete(`http://localhost:8000/carrito/eliminar-carrito`, {
+                data: {
+                    id: juego._id
+            }})
+        })
         localStorage.removeItem('idUsuarioLogeado');
-        window.location.reload(true);
     }
+
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/carrito/obtener-carrito`)
+        .then((response) =>{
+            setCarrito(response.data);
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+    
+    }, [])
 
     if (users.rol === "admin") {
         return (

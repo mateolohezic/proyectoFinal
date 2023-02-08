@@ -16,6 +16,7 @@ import Error from "./Pages/Error/Error";
 import Soporte from "./Pages/Soporte/Soporte";
 import Header from "./Components/Header/Header";
 import Busqueda from "./Pages/Busqueda/Busqueda";
+import MetodoPago from "./Pages/MetodoPago/MetodoPago";
 
 
 function App() {
@@ -46,10 +47,11 @@ function App() {
       <Route path="/Carrito" element={<Carrito/>} />
       <Route path="/Destacados" element={<Destacados/>} />
       <Route path="/Perfil" element={<Perfil/>} />
-      <Route path="/Error" element={<Error/>} />
+      <Route path="/404" element={<Error/>} />
       <Route path="/Favoritos" element={<Favoritos/>} />
       <Route path="/Soporte" element={<Soporte/>} />
       <Route path="/Busqueda" element={<Busqueda />} />
+      <Route path="/MetodoPago" element={<MetodoPago />} />
     </Routes>
     <Footer />
     </>

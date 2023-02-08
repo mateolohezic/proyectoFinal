@@ -4,7 +4,6 @@ import BotonLoginPerfilAdmin from '../BotonLoginPerfilAdmin/BotonLoginPerfilAdmi
 
 function Navbar() {
 
-
   return (
     <nav className="navbar navbar-expand-lg navBar sticky-top">
       <div className="container-fluid">

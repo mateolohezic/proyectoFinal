@@ -31,8 +31,6 @@ function Busqueda() {
         }
     }, [juegosCoinciden])
     
-    console.log(juegosCoinciden.length);
-    console.log(encontro);
     return (
         <>     
             <div className="fondoLogin">
