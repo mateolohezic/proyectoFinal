@@ -4,6 +4,7 @@ import CarouselDestacados from '../../Components/CarouselDestacados/CarouselDest
 import './Home.css';
 import CarouselNovedades from '../../Components/CarouselNovedades/CarouselNovedades';
 import AccordionCategorias from '../../Components/AccordionCategorias/AccordionCategorias';
+import Publicidad from '../../Components/Publicidad/Publicidad';
 
 function Home() {
 
@@ -20,9 +21,17 @@ function Home() {
       })
   }, [])
 
+    const [publicidad, setPublicidad] = useState(false)
+
+    useEffect(() =>{
+      setTimeout(() => {
+        setPublicidad(true);
+      }, 2000);
+    }, [])
 
     return (
-      <>     
+      <>
+           
       <div className="fondoHome">
       {
         destacados.length > 0 ? <CarouselDestacados /> : <></>
@@ -30,6 +39,8 @@ function Home() {
         <CarouselNovedades />
         <AccordionCategorias />
       </div>
+        { publicidad && <Publicidad/>}
+      
       </>
     )
 }

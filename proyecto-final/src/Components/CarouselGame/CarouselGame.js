@@ -4,7 +4,6 @@ import './CarouselGame.css';
 
 function CarouselGame( imagenes ) {
 
-  console.log(imagenes);
   return (
     <Carousel fade>
       <Carousel.Item>

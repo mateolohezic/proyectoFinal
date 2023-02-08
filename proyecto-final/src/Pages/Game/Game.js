@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import CarouselGame from '../../Components/CarouselGame/CarouselGame';
+import ModalComentario from '../../Components/ModalComentario/ModalComentario';
 import './Game.css';
 import axios from 'axios';
+import CardComentario from '../../Components/CardComentario/CardComentario';
 
 function Game() {
     
+    const [comentarios, setComentarios] = useState([])
+    const [hayComentarios, setHayComentarios] = useState(false)
     const [juegoEspecifico, setJuegoEspecifico] = useState({});
+    const [logeado, setLogeado] = useState(false);
     const id = localStorage.getItem('idJuego');
-    
+    const idUser = localStorage.getItem('idUsuarioLogeado');
+
     useEffect(() =>{
         axios.get(`http://localhost:8000/${id}`)
         .then((response) =>{
@@ -17,6 +23,34 @@ function Game() {
             console.log(error);
         })
     }, [])
+
+    
+    useEffect(() =>{
+        if (idUser !== null){
+            setLogeado(true)
+        }
+    }, [juegoEspecifico])
+
+    
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/comentarios/obtener-comentario`)
+        .then((response) =>{
+            setComentarios(response.data);
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+
+    }, [])
+
+    // const comentariosCoinciden = [];
+    const comentariosCoinciden = comentarios.filter(comentario => comentario.game === juegoEspecifico.title);
+
+    useEffect(() =>{
+        if (comentariosCoinciden.length > 0){
+            setHayComentarios(true)
+        }
+    }, [comentariosCoinciden])
 
     return (
     <>
@@ -39,6 +73,11 @@ function Game() {
                     <div className="fs-1 ms-4 ps-2 mt-2">{ juegoEspecifico.price > 0 ? <>$ {juegoEspecifico.price} ARS</>  : <>Descargar gratis</> }</div>
                     <div className="fs-3 ms-4 ps-2 mt-2">Descripción</div>
                     <div className="mt-2 ms-4 ps-2 pe-5 fs-5 text-white text-opacity-75 descripcionTexto">{juegoEspecifico.synopsis}</div>
+                    {   logeado && <div className="mt-5 ms-4 ps-2 pe-5 fs-5"><ModalComentario /></div>}
+                    { hayComentarios ? comentariosCoinciden.map(cadaComentario => <CardComentario key={cadaComentario._id} comentario={cadaComentario} />)
+                    :
+                    <div className="mt-4 ms-4 ps-2 fs-6 text-white text-opacity-75 descripcionTexto">Todavia no hay comentarios para este juego, se el primero en dejar uno!</div>
+                    }
                 </div>
             </div>
             <div className="d-flex flex-row-reverse fixedBottom m-5">

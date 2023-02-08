@@ -44,7 +44,7 @@ function CarouselNovedades() {
                                             </div>            
                                             <div className="card-body">
                                                 <h5 className="card-title text-center fs-6">{novedades[1].title}</h5>
-                                                <p className="card-text text-center text-muted">$ {novedades[1].price} ARS</p>
+                                                <p className="card-text text-center text-muted">{ novedades[1].price > 0 ? <>$ {novedades[1].price} ARS </>  : <>Gratis</> }</p>
                                             </div>
                                         </a>
                                     </div>
@@ -55,7 +55,7 @@ function CarouselNovedades() {
                                             </div>            
                                             <div className="card-body">
                                                 <h5 className="card-title text-center fs-6">{novedades[2].title}</h5>
-                                                <p className="card-text text-center text-muted">$ {novedades[2].price} ARS</p>
+                                                <p className="card-text text-center text-muted">{ novedades[2].price > 0 ? <>$ {novedades[2].price} ARS </>  : <>Gratis</> }</p>
                                             </div>
                                         </a>
                                     </div>
@@ -66,7 +66,7 @@ function CarouselNovedades() {
                                             </div>            
                                             <div className="card-body">
                                                 <h5 className="card-title text-center fs-6">{novedades[3].title}</h5>
-                                                <p className="card-text text-center text-muted">$ {novedades[3].price} ARS</p>
+                                                <p className="card-text text-center text-muted">{ novedades[3].price > 0 ? <>$ {novedades[3].price} ARS </>  : <>Gratis</> }</p>
                                             </div>
                                         </a>
                                     </div>
@@ -81,7 +81,7 @@ function CarouselNovedades() {
                                         </div>            
                                         <div className="card-body">
                                             <h5 className="card-title text-center fs-6">{novedades[4].title}</h5>
-                                            <p className="card-text text-center text-muted">$ {novedades[4].price} ARS</p>
+                                            <p className="card-text text-center text-muted">{ novedades[4].price > 0 ? <>$ {novedades[4].price} ARS </>  : <>Gratis</> }</p>
                                         </div>
                                     </a>
                                 </div>
@@ -92,7 +92,7 @@ function CarouselNovedades() {
                                         </div>            
                                         <div className="card-body">
                                             <h5 className="card-title text-center fs-6">{novedades[5].title}</h5>
-                                            <p className="card-text text-center text-muted">$ {novedades[5].price} ARS</p>
+                                            <p className="card-text text-center text-muted">{ novedades[5].price > 0 ? <>$ {novedades[5].price} ARS </>  : <>Gratis</> }</p>
                                         </div>
                                     </a>
                                 </div>
@@ -103,7 +103,7 @@ function CarouselNovedades() {
                                         </div>            
                                         <div className="card-body">
                                             <h5 className="card-title text-center fs-6">{novedades[6].title}</h5>
-                                            <p className="card-text text-center text-muted">$ {novedades[6].price} ARS</p>
+                                            <p className="card-text text-center text-muted">{ novedades[6].price > 0 ? <>$ {novedades[6].price} ARS </>  : <>Gratis</> }</p>
                                         </div>
                                     </a>
                                 </div>
@@ -114,7 +114,7 @@ function CarouselNovedades() {
                                         </div>            
                                         <div className="card-body">
                                             <h5 className="card-title text-center fs-6">{novedades[7].title}</h5>
-                                            <p className="card-text text-center text-muted">$ {novedades[7].price} ARS</p>
+                                            <p className="card-text text-center text-muted">{ novedades[7].price > 0 ? <>$ {novedades[7].price} ARS </>  : <>Gratis</> }</p>
                                         </div>
                                     </a>
                                 </div>
@@ -136,7 +136,7 @@ function CarouselNovedades() {
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title text-center fs-6">{novedades[0].title}</h5>
-                                        <p className="card-text text-center text-muted pb-5">$ {novedades[0].price} ARS</p>
+                                        <p className="card-text text-center text-muted pb-5">{ novedades[0].price > 0 ? <>$ {novedades[0].price} ARS </>  : <>Gratis</> }</p>
                                     </div>
                                 </div>
                             </a>
@@ -149,7 +149,7 @@ function CarouselNovedades() {
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title text-center fs-6">{novedades[1].title}</h5>
-                                        <p className="card-text text-center text-muted">$ {novedades[1].price} ARS</p>
+                                        <p className="card-text text-center text-muted">{ novedades[1].price > 0 ? <>$ {novedades[1].price} ARS </>  : <>Gratis</> }</p>
                                     </div>
                                 </div>
                             </a>
@@ -162,7 +162,7 @@ function CarouselNovedades() {
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title text-center fs-6">{novedades[2].title}</h5>
-                                        <p className="card-text text-center text-muted">$ {novedades[2].price} ARS</p>
+                                        <p className="card-text text-center text-muted">{ novedades[2].price > 0 ? <>$ {novedades[2].price} ARS </>  : <>Gratis</> }</p>
                                     </div>
                                 </div>
                             </a>
@@ -175,7 +175,7 @@ function CarouselNovedades() {
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title text-center fs-6">{novedades[3].title}</h5>
-                                        <p className="card-text text-center text-muted">$ {novedades[3].price} ARS</p>
+                                        <p className="card-text text-center text-muted">{ novedades[3].price > 0 ? <>$ {novedades[3].price} ARS </>  : <>Gratis</> }</p>
                                     </div>
                                 </div>
                             </a>
@@ -188,7 +188,7 @@ function CarouselNovedades() {
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title text-center fs-6">{novedades[4].title}</h5>
-                                        <p className="card-text text-center text-muted">$ {novedades[4].price} ARS</p>
+                                        <p className="card-text text-center text-muted">{ novedades[4].price > 0 ? <>$ {novedades[4].price} ARS </>  : <>Gratis</> }</p>
                                     </div>
                                 </div>
                             </a>
@@ -201,7 +201,7 @@ function CarouselNovedades() {
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title text-center fs-6">{novedades[5].title}</h5>
-                                        <p className="card-text text-center text-muted">$ {novedades[5].price} ARS</p>
+                                        <p className="card-text text-center text-muted">{ novedades[5].price > 0 ? <>$ {novedades[5].price} ARS </>  : <>Gratis</> }</p>
                                     </div>
                                 </div>
                             </a>
@@ -214,7 +214,7 @@ function CarouselNovedades() {
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title text-center fs-6">{novedades[6].title}</h5>
-                                        <p className="card-text text-center text-muted">$ {novedades[6].price} ARS</p>
+                                        <p className="card-text text-center text-muted">{ novedades[6].price > 0 ? <>$ {novedades[6].price} ARS </>  : <>Gratis</> }</p>
                                     </div>
                                 </div>
                             </a>
@@ -227,7 +227,7 @@ function CarouselNovedades() {
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title text-center fs-6">{novedades[7].title}</h5>
-                                        <p className="card-text text-center text-muted">$ {novedades[7].price} ARS</p>
+                                        <p className="card-text text-center text-muted">{ novedades[7].price > 0 ? <>$ {novedades[7].price} ARS </>  : <>Gratis</> }</p>
                                     </div>
                                 </div>
                             </a>

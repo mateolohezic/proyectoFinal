@@ -1,6 +1,5 @@
 import React from 'react'
 import './Navbar.css';
-import logoZonaPlay from './logo.png'
 import BotonLoginPerfilAdmin from '../BotonLoginPerfilAdmin/BotonLoginPerfilAdmin';
 
 function Navbar() {
@@ -9,7 +8,6 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navBar sticky-top">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/"><img className='logoNavBar' src={logoZonaPlay} alt="logo" /></a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

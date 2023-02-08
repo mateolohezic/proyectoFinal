@@ -14,6 +14,7 @@ import Perfil from "./Pages/Perfil/Perfil";
 import Favoritos from "./Pages/Favoritos/Favoritos";
 import Error from "./Pages/Error/Error";
 import Soporte from "./Pages/Soporte/Soporte";
+import Header from "./Components/Header/Header";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
     <>
     { cargando ? <SpinnerCargando/> : 
     <>
+    <Header/>
     <Navbar/>
     <Routes>
       <Route path="/" element={<Home/>} />

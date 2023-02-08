@@ -1,0 +1,8 @@
+.modalPublicidad{
+    display: block;
+}
+
+.fondoModalPublicidad{
+    background: url(./fondoPublicidad.jpg) no-repeat center center fixed;
+    background-size: cover;
+}

@@ -1,9 +1,5 @@
 import React from 'react'
 import './FilaUserAdmin.css';
-import BotonHacerPublicoCategoria from '../BotonHacerPublicoCategoria/BotonHacerPublicoCategoria';
-import BotonQuitarPublicoCategoria from '../BotonQuitarPublicoCategoria/BotonQuitarPublicoCategoria';
-import ModalBorrarCategoria from '../ModalBorrarCategoria/ModalBorrarCategoria';
-import ModalEditarCategoria from '../ModalEditarCategoria/ModalEditarCategoria';
 import BotonEstadoUsuario from '../BotonEstadoUsuario/BotonEstadoUsuario';
 import ModalBorrarUser from '../ModalBorrarUser/ModalBorrarUser';
 

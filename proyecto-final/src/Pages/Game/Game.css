@@ -89,6 +89,16 @@
         max-height: 40vw;
         width: auto;
     }
+
+    .cardComentario{
+        color: black;
+        margin-top: 3rem;
+        background-color: white;
+        box-shadow: -10px -10px 10px 0px rgba(0,0,0,0.75);
+        height: fit-content;
+        padding: 2rem;
+        width: 100%;
+    }
 }
 
 @media (min-width: 992px){
@@ -110,5 +120,27 @@
         min-height: 25vw;
         max-height: 25vw;
         width: auto;
+    }
+
+    .cardComentario{
+        color: black;
+        margin-top: 3rem;
+        background-color: white;
+        box-shadow: -10px -10px 10px 0px rgba(0,0,0,0.75);
+        height: fit-content;
+        padding: 2rem;
+        width: 75%;
+    }
+}
+
+@media (min-width:560px) and (max-width: 992px){
+    .cardComentario{
+        color: black;
+        margin-top: 3rem;
+        background-color: white;
+        box-shadow: -10px -10px 10px 0px rgba(0,0,0,0.75);
+        height: fit-content;
+        padding: 2rem;
+        width: 100%;
     }
 }

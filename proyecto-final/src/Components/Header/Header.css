@@ -1,0 +1,43 @@
+.headerPrincipal{
+    background-color: white;
+    font-size: 1.1rem;
+    color: #8b8b8b;
+    box-shadow: -1px 9px 32px -4px rgba(0,0,0,0.75);
+    box-shadow: -1px 9px 32px -4px rgba(0,0,0,0.75);
+    box-shadow: -1px 9px 32px -4px rgba(0,0,0,0.75);
+}
+
+.header-link{
+    color: #8b8b8b;
+}
+
+.header-link:hover{
+    color: black;
+    font-size: 1.07rem;
+}
+
+.navbar-brand{
+    width: 7%;
+    margin-right: 2rem;
+}
+
+@media (min-width: 992px) {   
+
+    .logoNavBar{
+        width: 10%;
+    }
+}
+
+@media (max-width: 576px) {   
+
+    .logoNavBar{
+        width: 30%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {   
+
+    .logoNavBar{
+        width: 15%;
+    }
+}

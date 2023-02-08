@@ -15,7 +15,7 @@ function AccordionCategoriaCardJuego(juego) {
             </div>            
             <div className="card-body">
                 <h5 className="card-title text-center tamañoLetraCardCategoria">{juego.juego.title}</h5>
-                <p className="card-text text-center text-muted tamañoLetraCardCategoria">$ {juego.juego.price} ARS</p>
+                <p className="card-text text-center text-muted tamañoLetraCardCategoria">{ juego.juego.price > 0 ? <>$ {juego.juego.price} ARS </>  : <>Gratis</> }</p>
             </div>
         </div>
     </>
