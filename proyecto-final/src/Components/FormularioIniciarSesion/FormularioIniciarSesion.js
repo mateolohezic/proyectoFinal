@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 function FormularioIniciarSesion() {
 
-    const { register, watch, handleSubmit, trigger, formState: { errors } } = useForm();
+    const { register, watch, handleSubmit, formState: { errors } } = useForm();
     const [userEncontrado, setUserEncontrado] = useState({
         password: ''
     })

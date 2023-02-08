@@ -15,6 +15,7 @@ import Favoritos from "./Pages/Favoritos/Favoritos";
 import Error from "./Pages/Error/Error";
 import Soporte from "./Pages/Soporte/Soporte";
 import Header from "./Components/Header/Header";
+import Busqueda from "./Pages/Busqueda/Busqueda";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
       <Route path="/Error" element={<Error/>} />
       <Route path="/Favoritos" element={<Favoritos/>} />
       <Route path="/Soporte" element={<Soporte/>} />
+      <Route path="/Busqueda" element={<Busqueda />} />
     </Routes>
     <Footer />
     </>

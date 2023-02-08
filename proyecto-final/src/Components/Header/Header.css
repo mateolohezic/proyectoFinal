@@ -23,12 +23,25 @@
 
 @media (min-width: 992px) {   
 
+    .buscadorInput{
+        width: 25%;
+        margin-left: auto;
+        margin-bottom: 0.5rem;
+    }
+
     .logoNavBar{
         width: 10%;
     }
 }
 
-@media (max-width: 576px) {   
+@media (max-width: 576px) { 
+    
+    .buscadorInput{
+        width: 90%;
+        margin: auto;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
 
     .logoNavBar{
         width: 30%;
@@ -36,6 +49,13 @@
 }
 
 @media (min-width: 576px) and (max-width: 992px) {   
+
+    .buscadorInput{
+        width: 50%;
+        margin: auto;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
 
     .logoNavBar{
         width: 15%;
