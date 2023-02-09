@@ -3,13 +3,13 @@ import axios from 'axios';
 
 function BotonHacerFavorito( juego ) {
 
-    const hacerFavorito = () =>{
+    const hacerFavorito = async () =>{
         const tokenAdmin = localStorage.getItem('token')
 
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-        axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/editar-juego`, {
+        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/editar-juego`, {
             accessToken: tokenAdmin,
             id: juego.juego._id,
             title: juego.juego.title,

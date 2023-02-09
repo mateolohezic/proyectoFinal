@@ -7,8 +7,8 @@ function FormularioCrearUser() {
     const { register, watch, handleSubmit, formState: { errors } } = useForm();
     const [users, setUsers] = useState([])
 
-    const onSubmit = (data) => {
-        axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/crear-user`, data)
+    const onSubmit = async (data) => {
+        await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/crear-user`, data)
         window.location.replace('/Login');
     }
 

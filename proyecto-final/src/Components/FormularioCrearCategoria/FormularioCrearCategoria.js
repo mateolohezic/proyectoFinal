@@ -18,12 +18,12 @@ function FormularioCrearCategoria() {
 
     }, [])
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const tokenAdmin = localStorage.getItem('token')
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-        axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/crear-categoria`, {
+        await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/crear-categoria`, {
             accessToken: tokenAdmin,
             name: data.name,
         })

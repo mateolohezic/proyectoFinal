@@ -6,12 +6,12 @@ function FormularioEditarCategoria( categoria ) {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const tokenAdmin = localStorage.getItem('token')
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-        axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/editar-categoria`, {
+        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/editar-categoria`, {
             accessToken: tokenAdmin,
             id: categoria.categoria.categoria._id,
             name: data.name,

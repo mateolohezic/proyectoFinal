@@ -22,9 +22,9 @@ function BotonLoginPerfilAdmin() {
         }
     }, [users])
 
-    const cerrarSesion = () => {
-        carrito.map(juego => {
-            axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/eliminar-carrito`, {
+    const cerrarSesion = async () => {
+        await carrito.map(juego => {
+             axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/eliminar-carrito`, {
                 data: {
                     id: juego._id
             }})

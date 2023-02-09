@@ -3,14 +3,14 @@ import React from 'react'
 
 function BotonActivo(user) {
 
-    const suspender = () => {
+    const suspender = async () => {
 
         const tokenAdmin = localStorage.getItem('token')
 
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-        axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/estado-user`, {
+        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/estado-user`, {
             accessToken: tokenAdmin,
             id: user.user._id,
             status: "suspendido"

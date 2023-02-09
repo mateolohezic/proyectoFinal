@@ -20,12 +20,12 @@ function FormularioEditarJuego(juego) {
 
     }, [])
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const tokenAdmin = localStorage.getItem('token')
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-            axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/editar-juego`, {
+            await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/editar-juego`, {
                 accessToken: tokenAdmin,        
                 id: juego.juego.juego._id,
                 title: data.title,

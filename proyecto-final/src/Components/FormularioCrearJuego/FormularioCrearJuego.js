@@ -31,12 +31,12 @@ function FormularioCrearJuego() {
 
     }, [])
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const tokenAdmin = localStorage.getItem('token')
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-        axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/crear-juego`, {
+        await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/crear-juego`, {
             accessToken: tokenAdmin,
             title: data.title,
             developer: data.developer,

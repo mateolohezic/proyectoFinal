@@ -30,11 +30,11 @@ function FormularioEnviarComentario() {
         })
     }, [])
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const comentario = data.comentario;
         const game = juegoEspecifico.title;
         const username = userEspecifico.username;
-        axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/comentarios/crear-comentario`, {
+        await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/comentarios/crear-comentario`, {
         username,
         game,
         comentario
