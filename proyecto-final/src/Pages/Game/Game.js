@@ -75,6 +75,10 @@ function Game() {
         window.location.reload(true);
     }
 
+    const irALogin =  () =>{
+        window.location.replace("/Login");
+    }
+
     const eliminarFavorito = async () =>{
         const favoritos = juegosFavoritos.filter(favoritos => favoritos.idJuego === juegoEspecifico._id)
         await axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/eliminar-favorito`, {
@@ -126,10 +130,16 @@ function Game() {
                     }
                 </div>
             </div>
-                    {   logeado && 
+                    {   logeado ? 
                     <>
                     <div className="d-flex flex-row-reverse fixedBottom m-5">
                         <button type="button" className="btn btn-darkk btn-lg" onClick={agregarCarrito}>{ juegoEspecifico.price > 0 ? <>Comprar</>  : <>Descargar</> }</button>
+                    </div>
+                    </>
+                    :
+                    <>
+                    <div className="d-flex flex-row-reverse fixedBottom m-5">
+                        <button type="button" className="btn btn-darkk btn-lg" onClick={irALogin}>{ juegoEspecifico.price > 0 ? <>Comprar</>  : <>Descargar</> }</button>
                     </div>
                     </>
                     }
