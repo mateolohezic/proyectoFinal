@@ -32,7 +32,7 @@ function FormularioEditarCategoria( categoria ) {
                 </div>
             </div>
             <div className="modal-footer">
-                <button type="submit" className="btn btn-danger">Añadir</button>
+                <button type="submit" className="btn btn-danger">Editar</button>
             </div>
         </form>
     </>
