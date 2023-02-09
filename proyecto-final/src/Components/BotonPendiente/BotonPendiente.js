@@ -10,6 +10,7 @@ function BotonPendiente(user) {
             window.location.replace('/404')
         } else {
         axios.patch(`http://localhost:8000/users/estado-user`, {
+            accessToken: tokenAdmin,
             id: user.user._id,
             status: "activo"
         })

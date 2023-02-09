@@ -4,8 +4,10 @@ import BotonEstadoUsuario from '../BotonEstadoUsuario/BotonEstadoUsuario';
 import ModalBorrarUser from '../ModalBorrarUser/ModalBorrarUser';
 
 function FilaUserAdmin( user ) {
-    return (
-    <>
+
+    if (user.user.rol === "user"){
+        return (
+            <>
         <tr>
             <td className='filaCodigoUser'>{user.user._id}</td>
             <td>{user.user.username}</td>
@@ -26,7 +28,12 @@ function FilaUserAdmin( user ) {
             </td>
         </tr>
     </>
-  )
+    )} else {
+        return(
+        <>
+        </>
+        )
+    }
 }
 
 export default FilaUserAdmin

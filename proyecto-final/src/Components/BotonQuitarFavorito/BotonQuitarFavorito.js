@@ -10,6 +10,7 @@ function BotonQuitarFavorito( juego ) {
             window.location.replace('/404')
         } else {
         axios.patch(`http://localhost:8000/editar-juego`, {
+            accessToken: tokenAdmin,
             id: juego.juego._id,
             title: juego.juego.title,
             developer:  juego.juego.developer,

@@ -10,6 +10,7 @@ function BotonHacerPublicoCategoria( categoria ) {
             window.location.replace('/404')
         } else {
         axios.patch(`http://localhost:8000/categorias/editar-categoria`, {
+            accessToken: tokenAdmin,
             id: categoria.categoria._id,
             name: categoria.categoria.name,
             published: true,

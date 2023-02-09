@@ -10,12 +10,18 @@ function ModalBorrarComentario( comentario ) {
     const handleShow = () => setShow(true);
 
     const eliminarComentario = async () => {
-    axios.delete(`http://localhost:8000/comentarios/eliminar-comentario`, {
-    data: {
-        id: comentario.comentario._id
-    }}
-    )
-    window.location.reload(true);
+    const tokenAdmin = localStorage.getItem('token')
+    if (!tokenAdmin) {
+        window.location.replace('/404')
+    } else {
+        axios.delete(`http://localhost:8000/comentarios/eliminar-comentario`, {
+        data: {
+            accessToken: tokenAdmin,
+            id: comentario.comentario._id
+        }}
+        )
+        window.location.reload(true);
+    }
     }
 
     return (

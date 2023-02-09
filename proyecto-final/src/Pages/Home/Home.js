@@ -26,7 +26,7 @@ function Home() {
     useEffect(() =>{
       setTimeout(() => {
         setPublicidad(true);
-      }, 2000);
+      }, 20000);
     }, [])
 
     return (

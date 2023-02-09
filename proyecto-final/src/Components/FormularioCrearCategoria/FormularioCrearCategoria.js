@@ -19,11 +19,19 @@ function FormularioCrearCategoria() {
     }, [])
 
     const onSubmit = (data) => {
-        axios.post(`http://localhost:8000/categorias/crear-categoria`, data)
+        const tokenAdmin = localStorage.getItem('token')
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+        axios.post(`http://localhost:8000/categorias/crear-categoria`, {
+            accessToken: tokenAdmin,
+            name: data.name,
+        })
         window.location.reload(true);
-    }
+    }}
 
     const categoriasCoinciden = categorias.filter(categoria => categoria.name === watch('name'))
+    
 
     return (
         <>

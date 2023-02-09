@@ -33,9 +33,25 @@ function FormularioCrearJuego() {
     }, [])
 
     const onSubmit = (data) => {
-        axios.post(`http://localhost:8000/crear-juego`, data)
+        const tokenAdmin = localStorage.getItem('token')
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+        axios.post(`http://localhost:8000/crear-juego`, {
+            accessToken: tokenAdmin,
+            title: data.title,
+            developer: data.developer,
+            categorie: data.categorie,
+            date: data.date,
+            price: data.price,
+            synopsis: data.synopsis,
+            image1: data.image1,
+            image2: data.image2,
+            image3: data.image3,
+            image4: data.image4
+        })
         window.location.reload(true)
-    }
+    }}
 
     const juegosCoinciden = juegos.filter(juego => juego.title === watch('title'))
 

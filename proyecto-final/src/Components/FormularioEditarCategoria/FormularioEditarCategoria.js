@@ -7,13 +7,18 @@ function FormularioEditarCategoria( categoria ) {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
+        const tokenAdmin = localStorage.getItem('token')
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
         axios.patch(`http://localhost:8000/categorias/editar-categoria`, {
+            accessToken: tokenAdmin,
             id: categoria.categoria.categoria._id,
             name: data.name,
             published: categoria.categoria.categoria.published,
         })
         window.location.reload(true);
-    }
+    }}
 
   return (
     <>
