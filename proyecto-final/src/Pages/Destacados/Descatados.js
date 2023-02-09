@@ -7,14 +7,19 @@ function Destacados() {
     const [juegos, setJuegos] = useState([]);
     const [encontro, setEncontro] = useState(false);
 
-    useEffect(() =>{
+    getJuegosDestacados = () =>{
         axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })
         .catch((error) =>{
             console.error(error);
-        })
+        })}
+
+    useEffect(() =>{
+
+        getJuegosDestacados()
+
     }, [])
     
     const juegosCoinciden = juegos.filter(juego => juego.favorite === true)
