@@ -1,60 +1,79 @@
 import React, { useState, useEffect } from 'react'
 import ModalAñadirJuego from '../../Components/ModalAñadirJuego/ModalAñadirJuego';
-import './Admin.css';
+import './admin.css';
 import axios from 'axios';
 import FilaJuegosAdmin from '../../Components/FilaJuegosAdmin/FilaJuegosAdmin';
 import ModalAñadirCategoria from '../../Components/ModalAñadirCategoria/ModalAñadirCategoria';
 import FilaCategoriaAdmin from '../../Components/FilaCategoriasAdmin/FilaCategoriasAdmin';
 import FilaUserAdmin from '../../Components/FilaUserAdmin/FilaUserAdmin';
 import FilaComentarioAdmin from '../../Components/FilaComentarioAdmin/FilaComentarioAdmin';
+import FilaConsultasAdmin from '../../Components/FilaConsultasAdmin/FilaConsultasAdmin';
 
 function Admin() {
 
+    const tokenAdmin = localStorage.getItem('token')
+
+    if (!tokenAdmin) {
+        window.location.replace('/404')
+    }
+    
     const [juegos, setJuegos] = useState([])
     const [categorias, setCategorias] = useState([])
     const [users, setUsers] = useState([])
     const [comentarios, setComentarios] = useState([])
+    const [consultas, setConsultas] = useState([])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/categorias/obtener-categorias`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/obtener-categorias`)
         .then((response) =>{
             setCategorias(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/users/obtener-users`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/obtener-users`)
         .then((response) =>{
             setUsers(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/comentarios/obtener-comentario`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/comentarios/obtener-comentario`)
         .then((response) =>{
             setComentarios(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
+        })
+
+    }, [])
+
+    useEffect(() =>{
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/consulta/obtener-consulta`)
+        .then((response) =>{
+            setConsultas(response.data);
+        })
+        .catch((error) =>{
+            console.error(error);
         })
 
     }, [])
@@ -64,11 +83,7 @@ function Admin() {
         <div className="tituloPrincipal text-center mx-auto fs-1 border-bottom border-1 pb-4 w-75">Administración de Juegos</div>
         <div className="container-fluid row text-center justify-content-center mt-5 mb-5 m-0 p-0">
             <div className="col-12">
-                <div className="d-flex justify-content-between">
-                    <div className="text-start ms-1 mb-3">
-                        <label htmlFor="search" className="mb-2 ms-auto me-2"><h1 className="modal-title fs-5"><i className="bi bi-search"></i></h1></label>
-                        <input type="search" className="p-2 ms-auto w-75" id="search" placeholder= "Buscar..." />
-                    </div>
+                <div className="d-flex flex-row-reverse">
                     <div className="text-end mb-3 me-1">
                         <ModalAñadirJuego />
                     </div>
@@ -136,7 +151,6 @@ function Admin() {
                             <th>Apellido</th> 
                             <th>Edad</th> 
                             <th>E-mail</th> 
-                            <th>Contraseña</th> 
                             <th>País</th> 
                             <th>Opciones</th> 
                         </tr>
@@ -167,6 +181,30 @@ function Admin() {
                         <tbody>
                         {
                             comentarios.sort((a,b) => (a.username > b.username) ? 1 : ((b.username > a.username) ? -1 : 0)).map(cadaComentario => <FilaComentarioAdmin key={cadaComentario._id} comentario={cadaComentario} />)
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div className="mt-5 text-center mx-auto fs-1 border-bottom border-1 pb-4 w-75">Consultas</div>
+        <div className="container-fluid row text-center justify-content-center mt-5 mb-5 m-0 p-0">
+            <div className="col-12 mt-2">
+                <div className="table-responsive mt-3">
+                    <table className="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th> 
+                            <th>Apellido</th> 
+                            <th>Email</th> 
+                            <th>Consulta</th> 
+                            <th>Opciones</th> 
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            consultas.sort((a,b) => (a.username > b.username) ? 1 : ((b.username > a.username) ? -1 : 0)).map(cadaConsulta => <FilaConsultasAdmin key={cadaConsulta._id} consulta={cadaConsulta} />)
                         }
                         </tbody>
                     </table>

@@ -10,12 +10,18 @@ function ModalBorrarJuego(juego) {
     const handleShow = () => setShow(true);
 
     const eliminarJuego = async () => {
-    axios.delete(`http://localhost:8000/eliminar-juego`, {
-    data: {
-        id: juego.juego._id
-    }}
-    )
-    window.location.reload(true);
+    const tokenAdmin = localStorage.getItem('token')
+    if (!tokenAdmin) {
+        window.location.replace('/404')
+    } else {
+        axios.delete(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/eliminar-juego`, {
+        data: {
+            accessToken: tokenAdmin,
+            id: juego.juego._id
+        }}
+        )
+        window.location.reload(true);
+        }
     }
 
     return (

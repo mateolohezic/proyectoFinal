@@ -1,25 +1,29 @@
 import React, {useState, useEffect } from 'react'
-import './CarouselNovedades.css';
+import './carouselNovedades.css';
 import axios from 'axios';
 
 function CarouselNovedades() {
     
     const [novedades, setJuegosNovedades] = useState([])
 
+    const irANovedades = () =>{
+        window.location.replace('/404')
+    }
+
     useEffect(() =>{
-        axios.get(`http://localhost:8000/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegosNovedades(response.data.filter(juego => juego.published === true ).sort((a, b) => 0.5 - Math.random()).slice(-8));
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
     }, [])
 
     if (novedades.length > 0) {
     return (
         <>
-        <button type='button' className='fs-4 badge text-dark tituloSeccion bg-white'><b>Novedades</b></button>
+        <button type='button' className='fs-4 badge text-dark tituloSeccion bg-white' onClick={irANovedades}><b>Novedades</b></button>
             <div className="row justify-content-evenly cajaCarouselNovedades align-middle mx-auto container-fluid carouselGrande">
                 <span type="button" className="botonCarousel align-self-center fs-5" data-bs-target="#carouselNovedades" data-bs-slide="prev"><i className="bi bi-caret-left-fill"></i></span>
                 <div id="carouselNovedades" className="carousel slide widthCarousel align-self-center" data-bs-ride="carousel">

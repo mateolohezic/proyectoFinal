@@ -24,3 +24,22 @@
     width: 7%;
     margin-right: 2rem;
 }
+
+@media (max-width: 992px){
+    .nav-link{
+        text-align: center;
+        margin: 0rem;
+        padding: 0rem;
+    }
+    
+    .botonNavBar{
+        padding: 0rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (min-width: 992px){
+    .botonNavBar{
+        padding-left: 0rem;
+    }
+}

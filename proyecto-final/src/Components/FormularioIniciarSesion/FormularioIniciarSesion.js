@@ -1,36 +1,30 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 
 function FormularioIniciarSesion() {
 
-    const { register, watch, handleSubmit, trigger, formState: { errors } } = useForm();
-    const [userEncontrado, setUserEncontrado] = useState({
-        password: ''
-    })
-    const [users, setUsers] = useState([])
-
-    useEffect(() =>{
-      axios.get(`http://localhost:8000/users/obtener-users`)
-      .then((response) =>{
-          setUsers(response.data.filter(user => user.status === 'activo'));
-      })
-      .catch((error) =>{
-          console.log(error);
-      })
-    }, [])
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [error, setError] = useState(false)
     
-    const onSubmit = () => {
-        localStorage.setItem('estadoLogeado', userEncontrado.rol);
-        localStorage.setItem('idUsuarioLogeado', userEncontrado._id);
-        window.location.replace('/');
+    const onSubmit = async(datos) => {
+        const respuesta = await axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/login-user`, {
+            username: datos.username,
+            password: datos.password
+        })
+        if (respuesta.status === 200) {        
+            const userEncontrado = respuesta
+            localStorage.setItem('idUsuarioLogeado', userEncontrado.data.user._id);
+            if (userEncontrado.data.user.rol === "admin") {
+                localStorage.setItem('token', userEncontrado.data.token);
+            }
+            window.location.replace("/")
+          } 
+          
+        if (respuesta.status === 206){
+            setError(true);
+          }
     }
-    
-    const usersCoinciden = users.filter(user => user.username === watch(`username`))
-
-    useEffect(() =>{
-        setUserEncontrado(usersCoinciden[0])
-    }, [usersCoinciden.length])
 
     return (
         <>
@@ -40,9 +34,8 @@ function FormularioIniciarSesion() {
                     <label className="form-label">Usuario</label>
                     <input type="text" className="form-control" {...register("username", {
                         required:  <p className='text-danger mt-2 ms-1 fs-6'>Usuario requerido.</p>,
-                        validate: value => usersCoinciden.length === 1 || 
-                        <p className='text-danger mt-2 ms-1 fs-6'>Usuario o contraseña incorrectos.</p>,
                     })}  name="username"  defaultValue="" maxLength={20}/>
+                    {errors.username && errors.username.message}
                 </div>
                 </div>
                 <div className="row">
@@ -50,11 +43,10 @@ function FormularioIniciarSesion() {
                     <label className="form-label">Contraseña</label>
                     <input type="password" className="form-control" {...register("password", {
                         required:  <p className='text-danger mt-2 ms-1 fs-6'>Contraseña requerida.</p>,
-                        validate: value => value === userEncontrado.password ||
-                        <p className='text-danger ms-1 fs-6'>Usuario o contraseña incorrectos.</p>,
                     })}  name="password"  defaultValue="" maxLength={25}/>
+                    {errors.password && errors.password.message}
                     {
-                        errors.username ? <>{errors.username && errors.username.message} </>: <>{errors.password && errors.password.message}</>                                 
+                        error && <p className='text-danger mt-2 ms-1 fs-6'>Usuario o contraseña incorrectos.</p>
                     }
                 </div>
                 </div>
@@ -62,7 +54,7 @@ function FormularioIniciarSesion() {
                     ¿No tienes una cuenta?
                     <a className="registerIniciarSesion ms-2" href="/Register">Regístrate</a>
                     <div>
-                    ¿Olvidaste tu contraseña? <a className="registerIniciarSesion ms-2" href='/'>Restablecer</a>
+                    ¿Olvidaste tu contraseña? <a className="registerIniciarSesion ms-2" href='/404'>Restablecer</a>
                     </div>
                 </div>
                 <div className="d-flex flex-row-reverse mt-3">

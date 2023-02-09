@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import FormularioEditarJuego from '../FormularioEditarJuego/FormularioEditarJuego';
-import './ModalEditarJuego.css';
 
 function ModalEditarJuego( juego ) {
     

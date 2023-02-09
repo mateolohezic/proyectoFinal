@@ -4,21 +4,21 @@
 
     }
 
-@media (max-width: 992px){
+@media (max-width: 576px){
 
     .cajaInformacionDestacado{
         border-top: 5px solid white;
     }
 
     .imagenCarousel{
-        min-height: 60vw;
-        max-height: 60vw;
-        width: auto;
+        min-height: 50vw;
+        max-height: 50vw;
+        width: 100%;
     }
 
     .cajaCarousel{
-        min-height: 60vw;
-        max-height: 60vw;
+        min-height: 50vw;
+        max-height: 50vw;
         width: 100%;
     }
 
@@ -47,15 +47,15 @@
 @media (min-width: 992px){
 
     .cajaCarousel{
-        min-height: 25vw;
-        max-height: 25vw;
+        min-height: 30vw;
+        max-height: 30vw;
         width: 100%;
     }
 
     .imagenCarousel{
-        min-height: 25vw;
-        max-height: 25vw;
-        width: auto;
+        min-height: 30vw;
+        max-height: 30vw;
+        width: 100%;
     }
     .botonVerMas{
         font-size: 1.25rem;
@@ -80,3 +80,42 @@
     }
 }
 
+@media (min-width: 576px) and (max-width: 992px){
+
+    .cajaInformacionDestacado{
+        border-top: 5px solid white;
+    }
+
+    .imagenCarousel{
+        min-height: 35vw;
+        max-height: 35vw;
+        width: 100%;
+    }
+
+    .cajaCarousel{
+        min-height: 35vw;
+        max-height: 35vw;
+        width: 100%;
+    }
+
+    .botonVerMas{
+        display: none;
+    }
+    .tituloCarouselDestacado{
+        margin: auto;
+        width: 80%;
+        text-align: center;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .categoriaCarouselDestacado{
+        margin-bottom: 3rem;
+        margin-left: 1.5rem;
+    }
+
+    .cajaContenedoraCol{
+        width: 80%;
+        margin: auto;
+    }
+}

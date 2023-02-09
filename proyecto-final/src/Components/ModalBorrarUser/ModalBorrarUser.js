@@ -10,12 +10,18 @@ function ModalBorrarUser( user ) {
     const handleShow = () => setShow(true);
 
     const eliminarUser = async () => {
-    axios.delete(`http://localhost:8000/users/eliminar-user`, {
-    data: {
-        id: user.user._id
-    }}
-    )
-    window.location.reload(true);
+        const tokenAdmin = localStorage.getItem('token')
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+            axios.delete(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/eliminar-user`, {
+            data: {
+                accessToken: tokenAdmin,
+                id: user.user._id
+            }}
+            )
+            window.location.reload(true);
+        }
     }
 
     return (

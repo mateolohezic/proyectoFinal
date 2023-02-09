@@ -1,6 +1,5 @@
 import React from 'react'
 import AccordionCategoriaCard from '../AccordionCategoriaCard/AccordionCategoriaCard'
-import './AccordionCategoriaItem.css'
 
 function AccordionCategoriaItem(categoria) {
   return (

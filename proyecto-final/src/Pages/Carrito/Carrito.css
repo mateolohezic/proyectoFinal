@@ -1,0 +1,73 @@
+.cajaCarrito{
+    background-color: white;
+    box-shadow: 0px 0px 54px 12px rgba(0,0,0,0.75);
+    padding-top: 5rem;
+    border-radius: 0.2rem;
+    width: 90%;
+}
+
+@media (min-width:560px) and (max-width: 992px){
+    .cardCarrito{
+        color: black;
+        margin-top: 3rem;
+        background-color: white;
+        border: 2px solid black;
+        height: fit-content;
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .imagenCarrito{
+        height: 10vw;
+        width: 100%;
+    }
+    
+    .cajaImagenCarrito{
+        width: 50%;
+    }
+}
+
+@media (max-width: 992px){
+
+    .cardCarrito{
+        color: black;
+        margin-top: 3rem;
+        background-color: white;
+        border: 2px solid black;
+        height: fit-content;
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .imagenCarrito{
+        height: 10vw;
+        width: 100%;
+    }
+    
+    .cajaImagenCarrito{
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px){
+
+    .cardCarrito{
+        color: black;
+        margin-top: 3rem;
+        background-color: white;
+        border: 2px solid black;
+        height: fit-content;
+        padding: 1rem;
+        width: 90%;
+        margin: auto;
+    }
+    
+    .imagenCarrito{
+        height: 10vw;
+        width: 100%;
+    }   
+
+    .cajaImagenCarrito{
+        width: 50%;
+    }
+}
