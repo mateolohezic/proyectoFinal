@@ -4,13 +4,18 @@ import axios from 'axios';
 function BotonQuitarPublicoCategoria( categoria ) {
 
     const quitarPublicoCategoria = () =>{
+        const tokenAdmin = localStorage.getItem('token')
+
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
         axios.patch(`http://localhost:8000/categorias/editar-categoria`, {
             id: categoria.categoria._id,
             name: categoria.categoria.name,
             published: false,
         })
         window.location.reload(true)
-    }
+    }}
     
     return (
     <>

@@ -4,12 +4,17 @@ import React from 'react'
 function BotonPendiente(user) {
     
     const activar = () => {
+        const tokenAdmin = localStorage.getItem('token')
+
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
         axios.patch(`http://localhost:8000/users/estado-user`, {
             id: user.user._id,
             status: "activo"
         })
         window.location.reload(true);
-    }
+    }}
 
     return (
         <>

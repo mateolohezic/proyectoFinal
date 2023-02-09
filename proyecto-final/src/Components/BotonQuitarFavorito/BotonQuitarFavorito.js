@@ -4,6 +4,11 @@ import axios from 'axios';
 function BotonQuitarFavorito( juego ) {
 
     const quitarFavorito = () =>{
+        const tokenAdmin = localStorage.getItem('token')
+
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
         axios.patch(`http://localhost:8000/editar-juego`, {
             id: juego.juego._id,
             title: juego.juego.title,
@@ -20,7 +25,7 @@ function BotonQuitarFavorito( juego ) {
             published: juego.juego.published,
         })
         window.location.reload(true)
-    }
+    }}
     return (
     <>
         <button type="button" className="btn btn-danger" onClick={quitarFavorito}><i className="bi bi-star-fill fs-6"></i></button>

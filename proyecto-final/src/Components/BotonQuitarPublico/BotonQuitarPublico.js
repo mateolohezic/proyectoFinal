@@ -4,6 +4,11 @@ import axios from 'axios';
 function BotonQuitarPublico( juego ) {
 
     const quitarPublico = () =>{
+        const tokenAdmin = localStorage.getItem('token')
+
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
         axios.patch(`http://localhost:8000/editar-juego`, {
             id: juego.juego._id,
             title: juego.juego.title,
@@ -20,7 +25,7 @@ function BotonQuitarPublico( juego ) {
             published: false,
         })
         window.location.reload(true)
-    }
+    }}
     
     return (
     <>

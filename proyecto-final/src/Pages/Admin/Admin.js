@@ -10,6 +10,12 @@ import FilaComentarioAdmin from '../../Components/FilaComentarioAdmin/FilaComent
 
 function Admin() {
 
+    const tokenAdmin = localStorage.getItem('token')
+
+    if (!tokenAdmin) {
+        window.location.replace('/404')
+    }
+    
     const [juegos, setJuegos] = useState([])
     const [categorias, setCategorias] = useState([])
     const [users, setUsers] = useState([])
@@ -136,7 +142,6 @@ function Admin() {
                             <th>Apellido</th> 
                             <th>Edad</th> 
                             <th>E-mail</th> 
-                            <th>Contraseña</th> 
                             <th>País</th> 
                             <th>Opciones</th> 
                         </tr>

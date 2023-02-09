@@ -27,6 +27,7 @@ function BotonLoginPerfilAdmin() {
             }})
         })
         localStorage.removeItem('idUsuarioLogeado');
+        localStorage.removeItem('token');
     }
 
     useEffect(() =>{

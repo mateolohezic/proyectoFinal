@@ -13,7 +13,6 @@ function FilaUserAdmin( user ) {
             <td>{user.user.surname}</td>
             <td>{user.user.age}</td>
             <td>{user.user.email}</td>
-            <td>{user.user.password}</td>
             <td>{user.user.country}</td>
             <td>
                 <div className="d-flex justify-content-evenly" >                                    
