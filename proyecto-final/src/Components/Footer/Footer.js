@@ -18,8 +18,8 @@ const Footer = () => {
               <h2>SOBRE NOSOTROS</h2>
               <div className='row'>
                 <div className='col-6'>
-                  <a href="/404">Quienes somos</a>
-                  <a href="/404">Contacto</a>
+                  <a href="/Nosotros">Quienes somos</a>
+                  <a href="/Soporte">Contacto</a>
                   <a href="/404">Envíos</a>
                   <a href="/404">Reembolso</a>
                 </div>
@@ -34,10 +34,10 @@ const Footer = () => {
             <div className="box">
               <h2>SÍGUENOS</h2>
               <div className="redes">
-                <a href="https://www.facebook.com/"><i className="bi bi-linkedin"></i></a>
-                <a href="https://twitter.com/"><i className="bi bi-instagram"></i></a>
-                <a href="https://www.youtube.com/"><i className="bi bi-twitter"></i></a>
-                <a href="https://www.instagram.com/"><i className="bi bi-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/mateo-bernab%C3%A9-lohezic-8b5329222/?originalSubdomain=ar"><i className="bi bi-linkedin"></i></a>
+                <a href="https://www.instagram.com/mateo.lohezic/"><i className="bi bi-instagram"></i></a>
+                <a href="https://github.com/mateolohezic"><i className="bi bi-github"></i></a>
+                <a href="https://www.facebook.com/mateo.lohezic"><i className="bi bi-facebook"></i></a>
               </div>
             </div>
           </div>

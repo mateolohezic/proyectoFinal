@@ -17,6 +17,7 @@ import Soporte from "./Pages/Soporte/Soporte";
 import Header from "./Components/Header/Header";
 import Busqueda from "./Pages/Busqueda/Busqueda";
 import MetodoPago from "./Pages/MetodoPago/MetodoPago";
+import Nosotros from "./Pages/Nosotros/Nosotros";
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
       <Route path="/Soporte" element={<Soporte/>} />
       <Route path="/Busqueda" element={<Busqueda />} />
       <Route path="/MetodoPago" element={<MetodoPago />} />
+      <Route path="/Nosotros" element={<Nosotros />} />
     </Routes>
     <Footer />
     </>

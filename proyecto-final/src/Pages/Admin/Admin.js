@@ -7,6 +7,7 @@ import ModalAñadirCategoria from '../../Components/ModalAñadirCategoria/ModalA
 import FilaCategoriaAdmin from '../../Components/FilaCategoriasAdmin/FilaCategoriasAdmin';
 import FilaUserAdmin from '../../Components/FilaUserAdmin/FilaUserAdmin';
 import FilaComentarioAdmin from '../../Components/FilaComentarioAdmin/FilaComentarioAdmin';
+import FilaConsultasAdmin from '../../Components/FilaConsultasAdmin/FilaConsultasAdmin';
 
 function Admin() {
 
@@ -20,6 +21,7 @@ function Admin() {
     const [categorias, setCategorias] = useState([])
     const [users, setUsers] = useState([])
     const [comentarios, setComentarios] = useState([])
+    const [consultas, setConsultas] = useState([])
 
     useEffect(() =>{
         axios.get(`http://localhost:8000/obtener-juegos`)
@@ -58,6 +60,17 @@ function Admin() {
         axios.get(`http://localhost:8000/comentarios/obtener-comentario`)
         .then((response) =>{
             setComentarios(response.data);
+        })
+        .catch((error) =>{
+            console.error(error);
+        })
+
+    }, [])
+
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/consulta/obtener-consulta`)
+        .then((response) =>{
+            setConsultas(response.data);
         })
         .catch((error) =>{
             console.error(error);
@@ -172,6 +185,30 @@ function Admin() {
                         <tbody>
                         {
                             comentarios.sort((a,b) => (a.username > b.username) ? 1 : ((b.username > a.username) ? -1 : 0)).map(cadaComentario => <FilaComentarioAdmin key={cadaComentario._id} comentario={cadaComentario} />)
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div className="mt-5 text-center mx-auto fs-1 border-bottom border-1 pb-4 w-75">Consultas</div>
+        <div className="container-fluid row text-center justify-content-center mt-5 mb-5 m-0 p-0">
+            <div className="col-12 mt-2">
+                <div className="table-responsive mt-3">
+                    <table className="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th> 
+                            <th>Apellido</th> 
+                            <th>Email</th> 
+                            <th>Consulta</th> 
+                            <th>Opciones</th> 
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            consultas.sort((a,b) => (a.username > b.username) ? 1 : ((b.username > a.username) ? -1 : 0)).map(cadaConsulta => <FilaConsultasAdmin key={cadaConsulta._id} consulta={cadaConsulta} />)
                         }
                         </tbody>
                     </table>
