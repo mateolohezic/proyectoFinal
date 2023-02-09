@@ -4,7 +4,12 @@ import axios from 'axios';
 function BotonHacerPublico( juego ) {
 
     const hacerPublico = () =>{
-        axios.patch(`http://localhost:8000/editar-juego`, {
+        const tokenAdmin = localStorage.getItem('token')
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+        axios.patch(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/editar-juego`, {
+            accessToken: tokenAdmin,
             id: juego.juego._id,
             title: juego.juego.title,
             developer:  juego.juego.developer,
@@ -20,7 +25,7 @@ function BotonHacerPublico( juego ) {
             published: true,
         })
         window.location.reload(true)
-    }
+    }}
     
     return (
     <>

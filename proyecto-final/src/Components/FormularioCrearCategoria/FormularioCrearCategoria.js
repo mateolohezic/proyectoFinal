@@ -8,22 +8,30 @@ function FormularioCrearCategoria() {
     const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/categorias/obtener-categorias`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/obtener-categorias`)
         .then((response) =>{
             setCategorias(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
 
     const onSubmit = (data) => {
-        axios.post(`http://localhost:8000/categorias/crear-categoria`, data)
+        const tokenAdmin = localStorage.getItem('token')
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+        axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/crear-categoria`, {
+            accessToken: tokenAdmin,
+            name: data.name,
+        })
         window.location.reload(true);
-    }
+    }}
 
     const categoriasCoinciden = categorias.filter(categoria => categoria.name === watch('name'))
+    
 
     return (
         <>

@@ -4,11 +4,19 @@ import React from 'react'
 function BotonActivo(user) {
 
     const suspender = () => {
-        axios.patch(`http://localhost:8000/users/estado-user`, {
+
+        const tokenAdmin = localStorage.getItem('token')
+
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+        axios.patch(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/estado-user`, {
+            accessToken: tokenAdmin,
             id: user.user._id,
             status: "suspendido"
         })
         window.location.reload(true);
+        }
     }
 
     return (

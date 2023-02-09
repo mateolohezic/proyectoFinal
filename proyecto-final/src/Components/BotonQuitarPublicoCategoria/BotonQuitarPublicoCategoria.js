@@ -4,13 +4,19 @@ import axios from 'axios';
 function BotonQuitarPublicoCategoria( categoria ) {
 
     const quitarPublicoCategoria = () =>{
-        axios.patch(`http://localhost:8000/categorias/editar-categoria`, {
+        const tokenAdmin = localStorage.getItem('token')
+
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+        axios.patch(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/editar-categoria`, {
+            accessToken: tokenAdmin,
             id: categoria.categoria._id,
             name: categoria.categoria.name,
             published: false,
         })
         window.location.reload(true)
-    }
+    }}
     
     return (
     <>

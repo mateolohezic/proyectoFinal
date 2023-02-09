@@ -1,9 +1,16 @@
-import React from 'react'
-import './Header.css';
+import React, { useState, useEffect } from 'react'
+import { useForm } from "react-hook-form";
 import logoZonaPlay from './logo.png'
+import './header.css';
 
 function Header() {
 
+  const { register, watch, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (data) => {
+    localStorage.setItem('busqueda', data.search)
+    window.location.replace('/Busqueda')
+}
 
   return (
     <nav className="navbar navbar-expand-lg headerPrincipal">
@@ -27,7 +34,25 @@ function Header() {
             <a className="w-100" href="/"><img className='logoNavBar' src={logoZonaPlay} alt="logo" /></a>
           </div>
           <div className="col-4 align-middle text-end m-0 p-0">
-              <a className="header-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Buscar" href="/"><div className='fs-3 pe-2'><i className="bi bi-search"></i></div></a>
+              <a className="header-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><div className='fs-3 pe-2'><i className="bi bi-search"></i></div></a>
+          </div>
+          <div className="collapse" id="collapseExample">
+            <div className='buscadorInput'>
+              <form onSubmit={handleSubmit(onSubmit)} className="">
+                <div className="btn-group w-100" role="group" aria-label="Basic example">
+                  <input className="form-control" type="search" placeholder="Juego..." aria-label="Search" {...register("search", {
+                            required: <p className='text-danger mt-2 ms-1 fs-6'>Campo requerido.</p>,
+                            pattern: {
+                                value: /^[a-zA-Z0-9áéíóúñÑÁÉÍÓÚ ]{1,30}$/i,
+                                message: <p className='text-danger mt-2 ms-1 fs-6'>Campo invalido.</p>
+                            },
+                        })} name="search" defaultValue="" maxLength={30}/>
+
+                  <button type="submit" className="btn btn-outline-secondary">Buscar</button>
+                </div>
+                {errors.search && errors.search.message}
+              </form>
+            </div>
           </div>
         </div>
       </div>

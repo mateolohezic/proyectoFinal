@@ -4,7 +4,13 @@ import axios from 'axios';
 function BotonQuitarFavorito( juego ) {
 
     const quitarFavorito = () =>{
-        axios.patch(`http://localhost:8000/editar-juego`, {
+        const tokenAdmin = localStorage.getItem('token')
+
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+        axios.patch(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/editar-juego`, {
+            accessToken: tokenAdmin,
             id: juego.juego._id,
             title: juego.juego.title,
             developer:  juego.juego.developer,
@@ -20,7 +26,7 @@ function BotonQuitarFavorito( juego ) {
             published: juego.juego.published,
         })
         window.location.reload(true)
-    }
+    }}
     return (
     <>
         <button type="button" className="btn btn-danger" onClick={quitarFavorito}><i className="bi bi-star-fill fs-6"></i></button>

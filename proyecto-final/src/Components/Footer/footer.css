@@ -118,3 +118,8 @@ box-shadow: 2px -5px 43px 0px rgba(31,31,31,0.75);
 @media (min-width: 992px){
 
 }
+
+.informacionContacto{
+    color: white;
+    font-size: 0.8rem;
+}

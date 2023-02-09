@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import OpcionCategoria from '../OpcionCategoria/OpcionCategoria';
-import './FormularioCrearJuego.css';
 import { useForm } from "react-hook-form";
 
 function FormularioCrearJuego() {
@@ -11,31 +10,47 @@ function FormularioCrearJuego() {
     const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/categorias/obtener-categorias`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/obtener-categorias`)
         .then((response) =>{
             setCategorias(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
 
     const onSubmit = (data) => {
-        axios.post(`http://localhost:8000/crear-juego`, data)
+        const tokenAdmin = localStorage.getItem('token')
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+        axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/crear-juego`, {
+            accessToken: tokenAdmin,
+            title: data.title,
+            developer: data.developer,
+            categorie: data.categorie,
+            date: data.date,
+            price: data.price,
+            synopsis: data.synopsis,
+            image1: data.image1,
+            image2: data.image2,
+            image3: data.image3,
+            image4: data.image4
+        })
         window.location.reload(true)
-    }
+    }}
 
     const juegosCoinciden = juegos.filter(juego => juego.title === watch('title'))
 

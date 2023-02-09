@@ -15,6 +15,9 @@ import Favoritos from "./Pages/Favoritos/Favoritos";
 import Error from "./Pages/Error/Error";
 import Soporte from "./Pages/Soporte/Soporte";
 import Header from "./Components/Header/Header";
+import Busqueda from "./Pages/Busqueda/Busqueda";
+import MetodoPago from "./Pages/MetodoPago/MetodoPago";
+import Nosotros from "./Pages/Nosotros/Nosotros";
 
 
 function App() {
@@ -27,7 +30,7 @@ function App() {
       if (document.readyState === "complete") {
         setCargando(false);
       }
-    }, 700);
+    }, 2000);
 }, [])
 
   return (
@@ -45,9 +48,12 @@ function App() {
       <Route path="/Carrito" element={<Carrito/>} />
       <Route path="/Destacados" element={<Destacados/>} />
       <Route path="/Perfil" element={<Perfil/>} />
-      <Route path="/Error" element={<Error/>} />
+      <Route path="/404" element={<Error/>} />
       <Route path="/Favoritos" element={<Favoritos/>} />
       <Route path="/Soporte" element={<Soporte/>} />
+      <Route path="/Busqueda" element={<Busqueda />} />
+      <Route path="/MetodoPago" element={<MetodoPago />} />
+      <Route path="/Nosotros" element={<Nosotros />} />
     </Routes>
     <Footer />
     </>

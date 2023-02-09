@@ -7,13 +7,18 @@ function FormularioEditarCategoria( categoria ) {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-        axios.patch(`http://localhost:8000/categorias/editar-categoria`, {
+        const tokenAdmin = localStorage.getItem('token')
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+        axios.patch(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/editar-categoria`, {
+            accessToken: tokenAdmin,
             id: categoria.categoria.categoria._id,
             name: data.name,
             published: categoria.categoria.categoria.published,
         })
         window.location.reload(true);
-    }
+    }}
 
   return (
     <>
@@ -32,7 +37,7 @@ function FormularioEditarCategoria( categoria ) {
                 </div>
             </div>
             <div className="modal-footer">
-                <button type="submit" className="btn btn-danger">Añadir</button>
+                <button type="submit" className="btn btn-danger">Editar</button>
             </div>
         </form>
     </>

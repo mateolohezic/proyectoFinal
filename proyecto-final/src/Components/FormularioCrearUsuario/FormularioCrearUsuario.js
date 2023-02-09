@@ -8,17 +8,17 @@ function FormularioCrearUser() {
     const [users, setUsers] = useState([])
 
     const onSubmit = (data) => {
-        axios.post(`http://localhost:8000/users/crear-user`, data)
+        axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/crear-user`, data)
         window.location.replace('/Login');
     }
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/users/obtener-users`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/obtener-users`)
         .then((response) =>{
             setUsers(response.data);
         })
         .catch((error) =>{
-          console.log(error);
+          console.error(error);
         })
     }, [])
 
