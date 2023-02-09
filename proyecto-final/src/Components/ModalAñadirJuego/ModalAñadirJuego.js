@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import './modalAñadirJuego.css';
+import './ModalAñadirJuego.css';
 import FormularioCrearJuego from '../FormularioCrearJuego/FormularioCrearJuego';
 
 function ModalAñadirJuego() {

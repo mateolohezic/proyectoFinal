@@ -7,7 +7,7 @@ function Soporte() {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-        axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/consulta/crear-consulta`, data)
+        axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/consulta/crear-consulta`, data)
         window.location.reload(true)
     }
 

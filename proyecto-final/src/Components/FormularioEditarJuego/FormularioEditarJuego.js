@@ -10,7 +10,7 @@ function FormularioEditarJuego(juego) {
     const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/obtener-categorias`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/obtener-categorias`)
         .then((response) =>{
             setCategorias(response.data.filter(categoria => categoria.name !== juego.juego.juego.categorie));
         })
@@ -25,7 +25,7 @@ function FormularioEditarJuego(juego) {
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-            axios.patch(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/editar-juego`, {
+            axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/editar-juego`, {
                 accessToken: tokenAdmin,        
                 id: juego.juego.juego._id,
                 title: data.title,

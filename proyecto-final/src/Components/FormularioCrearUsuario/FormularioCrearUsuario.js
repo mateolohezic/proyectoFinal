@@ -8,12 +8,12 @@ function FormularioCrearUser() {
     const [users, setUsers] = useState([])
 
     const onSubmit = (data) => {
-        axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/crear-user`, data)
+        axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/crear-user`, data)
         window.location.replace('/Login');
     }
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/obtener-users`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/obtener-users`)
         .then((response) =>{
             setUsers(response.data);
         })

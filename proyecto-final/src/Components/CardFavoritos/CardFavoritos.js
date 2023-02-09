@@ -4,7 +4,7 @@ import axios from 'axios';
 function CardFavoritos(juego) {
 
     const eliminarFavorito = () =>{
-        axios.delete(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/favorito/eliminar-favorito`, {
+        axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/eliminar-favorito`, {
             data: {
                 id: juego.juego._id
             }

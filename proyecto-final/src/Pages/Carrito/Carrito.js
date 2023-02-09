@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import CardCarrito from '../../Components/CardCarrito/CardCarrito';
-import './carrito.css';
+import './Carrito.css';
 
 function Carrito() {
 
@@ -9,7 +9,7 @@ function Carrito() {
     const [encontro, setEncontro] = useState(false);
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/carrito/obtener-carrito`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/obtener-carrito`)
         .then((response) =>{
             setCarrito(response.data);
         })

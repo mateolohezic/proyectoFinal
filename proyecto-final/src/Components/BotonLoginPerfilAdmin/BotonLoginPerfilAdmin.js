@@ -12,7 +12,7 @@ function BotonLoginPerfilAdmin() {
 
     useEffect(() =>{
         if (id !== null){
-            axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/${id}`)
+            axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${id}`)
             .then((response) =>{
                 setUsers(response.data);
             })
@@ -24,7 +24,7 @@ function BotonLoginPerfilAdmin() {
 
     const cerrarSesion = () => {
         carrito.map(juego => {
-            axios.delete(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/carrito/eliminar-carrito`, {
+            axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/eliminar-carrito`, {
                 data: {
                     id: juego._id
             }})
@@ -34,7 +34,7 @@ function BotonLoginPerfilAdmin() {
     }
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/carrito/obtener-carrito`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/obtener-carrito`)
         .then((response) =>{
             setCarrito(response.data);
         })
@@ -45,7 +45,7 @@ function BotonLoginPerfilAdmin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/favorito/obtener-favorito`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/obtener-favorito`)
         .then((response) =>{
             setFavoritos(response.data);
         })

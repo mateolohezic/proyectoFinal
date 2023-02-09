@@ -4,7 +4,7 @@ import axios from 'axios';
 function CardCarrito(juego) {
 
     const eliminarDelCarrito = async () => {
-        axios.delete(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/carrito/eliminar-carrito`, {
+        axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/eliminar-carrito`, {
         data: {
             id: juego.juego._id
         }}

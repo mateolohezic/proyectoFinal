@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './publicidad.css'
+import './Publicidad.css'
 
 function Publicidad() {
 

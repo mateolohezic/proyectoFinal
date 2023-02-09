@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import './busqueda.css';
+import './Busqueda.css';
 import BusquedaCardJuego from '../../Components/BusquedaCardJuego/BusquedaCardJuego';
 
 function Busqueda() {
@@ -14,7 +14,7 @@ function Busqueda() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })

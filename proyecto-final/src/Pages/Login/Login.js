@@ -1,6 +1,6 @@
 import React from 'react'
 import FormularioIniciarSesion from '../../Components/FormularioIniciarSesion/FormularioIniciarSesion';
-import './login.css';
+import './Login.css';
 
 function Login() {
 

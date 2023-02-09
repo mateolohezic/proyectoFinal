@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react'
-import './carouselNovedades.css';
+import './CarouselNovedades.css';
 import axios from 'axios';
 
 function CarouselNovedades() {
@@ -11,7 +11,7 @@ function CarouselNovedades() {
     }
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegosNovedades(response.data.filter(juego => juego.published === true ).sort((a, b) => 0.5 - Math.random()).slice(-8));
         })

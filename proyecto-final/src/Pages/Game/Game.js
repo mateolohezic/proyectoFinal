@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import CarouselGame from '../../Components/CarouselGame/CarouselGame';
 import ModalComentario from '../../Components/ModalComentario/ModalComentario';
-import './game.css';
+import './Game.css';
 import axios from 'axios';
 import CardComentario from '../../Components/CardComentario/CardComentario';
 
@@ -17,7 +17,7 @@ function Game() {
     const idUser = localStorage.getItem('idUsuarioLogeado');
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/${id}`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/${id}`)
         .then((response) =>{
             setJuegoEspecifico(response.data);
         })
@@ -34,7 +34,7 @@ function Game() {
     }, [juegoEspecifico])
 
     useEffect(() =>{
-        axios.get('https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/favorito/obtener-favorito')
+        axios.get('https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/obtener-favorito')
         .then((response) =>{
             setjuegosFavoritos(response.data)
         })
@@ -46,7 +46,7 @@ function Game() {
 
     
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/comentarios/obtener-comentario`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/comentarios/obtener-comentario`)
         .then((response) =>{
             setComentarios(response.data);
         })
@@ -57,7 +57,7 @@ function Game() {
     }, [])
 
     const agregarCarrito = () =>{
-        axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/carrito/crear-carrito`, {
+        axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/crear-carrito`, {
             title: juegoEspecifico.title,
             price: juegoEspecifico.price,
             image1: juegoEspecifico.image1
@@ -66,7 +66,7 @@ function Game() {
     }
 
     const agregarFavorito = () =>{
-        axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/favorito/crear-favorito`, {
+        axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/crear-favorito`, {
             title: juegoEspecifico.title,
             price: juegoEspecifico.price,
             image1: juegoEspecifico.image1,
@@ -77,7 +77,7 @@ function Game() {
 
     const eliminarFavorito = () =>{
         const favoritos = juegosFavoritos.filter(favoritos => favoritos.idJuego === juegoEspecifico._id)
-        axios.delete(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/favorito/eliminar-favorito`, {
+        axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/eliminar-favorito`, {
             data: {
                 id: favoritos[0]._id
             }

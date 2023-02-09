@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ModalAñadirJuego from '../../Components/ModalAñadirJuego/ModalAñadirJuego';
-import './admin.css';
+import './Admin.css';
 import axios from 'axios';
 import FilaJuegosAdmin from '../../Components/FilaJuegosAdmin/FilaJuegosAdmin';
 import ModalAñadirCategoria from '../../Components/ModalAñadirCategoria/ModalAñadirCategoria';
@@ -24,7 +24,7 @@ function Admin() {
     const [consultas, setConsultas] = useState([])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })
@@ -35,7 +35,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/obtener-categorias`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/obtener-categorias`)
         .then((response) =>{
             setCategorias(response.data);
         })
@@ -46,7 +46,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/obtener-users`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/obtener-users`)
         .then((response) =>{
             setUsers(response.data);
         })
@@ -57,7 +57,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/comentarios/obtener-comentario`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/comentarios/obtener-comentario`)
         .then((response) =>{
             setComentarios(response.data);
         })
@@ -68,7 +68,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/consulta/obtener-consulta`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/consulta/obtener-consulta`)
         .then((response) =>{
             setConsultas(response.data);
         })

@@ -1,6 +1,6 @@
 import React from 'react'
 import miFoto from './yo.jpg'
-import './nosotros.css';
+import './Nosotros.css';
 
 
 function Nosotros() {

@@ -8,7 +8,7 @@ function Favoritos() {
     const [encontro, setEncontro] = useState(false);
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/favorito/obtener-favorito`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/obtener-favorito`)
         .then((response) =>{
             setFavorito(response.data);
         })

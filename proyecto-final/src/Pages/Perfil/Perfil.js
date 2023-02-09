@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-import './perfil.css';
+import './Perfil.css';
 
 function Perfil() {
 
@@ -8,7 +8,7 @@ function Perfil() {
     const id = localStorage.getItem('idUsuarioLogeado');
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/${id}`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${id}`)
         .then((response) =>{
             setUserEspecifico(response.data);
         })

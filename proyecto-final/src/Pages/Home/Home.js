@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react'
 import axios from 'axios';
 import CarouselDestacados from '../../Components/CarouselDestacados/CarouselDestacados';
-import './home.css';
+import './Home.css';
 import CarouselNovedades from '../../Components/CarouselNovedades/CarouselNovedades';
 import AccordionCategorias from '../../Components/AccordionCategorias/AccordionCategorias';
 import Publicidad from '../../Components/Publicidad/Publicidad';
@@ -12,7 +12,7 @@ function Home() {
     const [destacados, setDestacados] = useState([])
 
     useEffect(() =>{
-      axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/obtener-juegos`)
+      axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
       .then((response) =>{
           setDestacados(response.data.filter(juego => juego.favorite === true && juego.published === true));
 
