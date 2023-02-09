@@ -34,14 +34,19 @@ function Game() {
     }, [juegoEspecifico])
 
     useEffect(() =>{
-        axios.get('https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/obtener-favorito')
+
+        const obtenerFavoritos = async () =>{        
+        await axios.get('https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/obtener-favorito')
         .then((response) =>{
             setjuegosFavoritos(response.data)
         })
-        const favoritos = juegosFavoritos.filter(favoritos => favoritos.idJuego === juegoEspecifico._id)
+        const favoritos = await juegosFavoritos.filter(favoritos => favoritos.idJuego === juegoEspecifico._id)
         if (favoritos.length > 0) {
             setFavorito(true)
-        }
+        }}
+        
+        obtenerFavoritos()
+
     }, [juegoEspecifico])
 
     
