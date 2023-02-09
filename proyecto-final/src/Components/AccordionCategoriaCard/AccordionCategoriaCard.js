@@ -15,7 +15,7 @@ function AccordionCategoriaCard(categoria) {
             setJuegosCategoria(response.data.filter(juego => juego.published === true && juego.categorie === categoria.categoria.name));
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
     }, [])
     return (

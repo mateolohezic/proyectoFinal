@@ -14,7 +14,7 @@ function BotonLoginPerfilAdmin() {
                 setUsers(response.data);
             })
             .catch((error) =>{
-                console.log(error);
+                console.error(error);
             })
         }
     }, [users])
@@ -36,7 +36,7 @@ function BotonLoginPerfilAdmin() {
             setCarrito(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
     
     }, [])

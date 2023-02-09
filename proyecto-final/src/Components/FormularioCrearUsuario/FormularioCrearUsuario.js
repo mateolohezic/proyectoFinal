@@ -18,7 +18,7 @@ function FormularioCrearUser() {
             setUsers(response.data);
         })
         .catch((error) =>{
-          console.log(error);
+          console.error(error);
         })
     }, [])
 

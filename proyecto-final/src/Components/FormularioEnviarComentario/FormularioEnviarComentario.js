@@ -17,7 +17,7 @@ function FormularioEnviarComentario() {
             setJuegoEspecifico(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
     }, [])
 
@@ -27,7 +27,7 @@ function FormularioEnviarComentario() {
             setUserEspecifico(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
     }, [])
 

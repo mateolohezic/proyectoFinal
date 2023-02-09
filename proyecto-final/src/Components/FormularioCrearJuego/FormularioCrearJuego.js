@@ -16,7 +16,7 @@ function FormularioCrearJuego() {
             setJuegos(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
@@ -27,7 +27,7 @@ function FormularioCrearJuego() {
             setCategorias(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])

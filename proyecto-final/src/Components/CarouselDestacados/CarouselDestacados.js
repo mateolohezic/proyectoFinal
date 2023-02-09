@@ -11,7 +11,7 @@ function CarouselDestacados() {
             setDestacados(response.data.filter(juego => juego.favorite === true && juego.published === true).sort((a, b) => 0.5 - Math.random()).shift());
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
     }, [])
 

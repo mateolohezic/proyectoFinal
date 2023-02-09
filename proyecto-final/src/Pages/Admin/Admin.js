@@ -27,7 +27,7 @@ function Admin() {
             setJuegos(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
@@ -38,7 +38,7 @@ function Admin() {
             setCategorias(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
@@ -49,7 +49,7 @@ function Admin() {
             setUsers(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
@@ -60,7 +60,7 @@ function Admin() {
             setComentarios(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])

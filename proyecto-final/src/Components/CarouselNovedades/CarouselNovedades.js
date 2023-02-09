@@ -12,7 +12,7 @@ function CarouselNovedades() {
             setJuegosNovedades(response.data.filter(juego => juego.published === true ).sort((a, b) => 0.5 - Math.random()).slice(-8));
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
     }, [])
 

@@ -14,7 +14,7 @@ function Carrito() {
             setCarrito(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])

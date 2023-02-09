@@ -20,7 +20,7 @@ function Game() {
             setJuegoEspecifico(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
     }, [])
 
@@ -38,7 +38,7 @@ function Game() {
             setComentarios(response.data);
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])

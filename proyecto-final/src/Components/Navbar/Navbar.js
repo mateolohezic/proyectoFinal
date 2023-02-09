@@ -19,7 +19,7 @@ function Navbar() {
               <a className="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Destacados" href="/Destacados"><div className='fs-2 ps-3'><i className="bi bi-star-fill"></i></div></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Novedades" href="/Error"><div className='fs-2 ps-3'><i className="bi bi-megaphone-fill"></i></div></a>
+              <a className="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Novedades" href="/404"><div className='fs-2 ps-3'><i className="bi bi-megaphone-fill"></i></div></a>
             </li>
           </ul>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">         

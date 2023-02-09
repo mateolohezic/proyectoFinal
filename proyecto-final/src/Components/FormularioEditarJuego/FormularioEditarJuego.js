@@ -16,7 +16,7 @@ function FormularioEditarJuego(juego) {
             setCategorias(response.data.filter(categoria => categoria.name !== juego.juego.juego.categorie));
         })
         .catch((error) =>{
-            console.log(error);
+            console.error(error);
         })
 
     }, [])
