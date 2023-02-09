@@ -1,16 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 
-function CardCarrito(juego) {
+function CardFavoritos(juego) {
 
-    const eliminarDelCarrito = async () => {
-        axios.delete(`http://localhost:8000/carrito/eliminar-carrito`, {
-        data: {
-            id: juego.juego._id
-        }}
-        )
+    const eliminarFavorito = () =>{
+        axios.delete(`http://localhost:8000/favorito/eliminar-favorito`, {
+            data: {
+                id: juego.juego._id
+            }
+        })
         window.location.reload(true);
-        }
+    }
 
     return (
         <>
@@ -25,11 +25,11 @@ function CardCarrito(juego) {
                         </div>
                     </div>
                     <div>$ {juego.juego.price} ARS</div>
-                    <button type="button" className="btn btn-danger" onClick={eliminarDelCarrito}><i className="bi bi-trash fs-6"></i></button>
+                    <button type="button" className="btn btn-danger" onClick={eliminarFavorito}><i className="bi bi-trash fs-6"></i></button>
                 </div>
             </div>
         </>
     )
 }
 
-export default CardCarrito
+export default CardFavoritos

@@ -7,7 +7,9 @@ import CardComentario from '../../Components/CardComentario/CardComentario';
 
 function Game() {
     
+    const [favorito, setFavorito] = useState(false)
     const [comentarios, setComentarios] = useState([])
+    const [juegosFavoritos, setjuegosFavoritos] = useState([])
     const [hayComentarios, setHayComentarios] = useState(false)
     const [juegoEspecifico, setJuegoEspecifico] = useState({});
     const [logeado, setLogeado] = useState(false);
@@ -31,6 +33,17 @@ function Game() {
         }
     }, [juegoEspecifico])
 
+    useEffect(() =>{
+        axios.get('http://localhost:8000/favorito/obtener-favorito')
+        .then((response) =>{
+            setjuegosFavoritos(response.data)
+        })
+        const favoritos = juegosFavoritos.filter(favoritos => favoritos.idJuego === juegoEspecifico._id)
+        if (favoritos.length > 0) {
+            setFavorito(true)
+        }
+    }, [juegoEspecifico])
+
     
     useEffect(() =>{
         axios.get(`http://localhost:8000/comentarios/obtener-comentario`)
@@ -51,6 +64,26 @@ function Game() {
         })
         window.location.replace("/Carrito");
     }
+
+    const agregarFavorito = () =>{
+        axios.post(`http://localhost:8000/favorito/crear-favorito`, {
+            title: juegoEspecifico.title,
+            price: juegoEspecifico.price,
+            image1: juegoEspecifico.image1,
+            idJuego: juegoEspecifico._id
+        })
+        window.location.reload(true);
+    }
+
+    const eliminarFavorito = () =>{
+        const favoritos = juegosFavoritos.filter(favoritos => favoritos.idJuego === juegoEspecifico._id)
+        axios.delete(`http://localhost:8000/favorito/eliminar-favorito`, {
+            data: {
+                id: favoritos[0]._id
+            }
+        })
+        window.location.reload(true);
+    }
         
     const comentariosCoinciden = comentarios.filter(comentario => comentario.game === juegoEspecifico.title);
 
@@ -66,15 +99,20 @@ function Game() {
             <div className="text-start volverInicio ms-4">
                 <a href="/" className="text-decoration-none inicio"><i className="bi bi-arrow-left-short"></i>Inicio</a>
             </div>
-            <div className="text-center fs-1 tituloGame pb-3 mx-auto">{juegoEspecifico.title}</div>
+            <div className="text-center fs-1 tituloGame pb-3 mx-auto">{juegoEspecifico.title}
+            </div>
             <div className='containerCarouselGame'>
             <CarouselGame image1={juegoEspecifico.image1} image2={juegoEspecifico.image2} image3={juegoEspecifico.image3} image4={juegoEspecifico.image4}/>
             </div>
             <div className='w-100'>
                 <div className="column text-white text-start divFichaTecnica">
                     <div className="mt-5 fichaTecnicaTexto fs-1">Ficha técnica</div>
-                    <div className="fs-3 ms-4 ps-2 mt-5">{juegoEspecifico.title}</div>
-                    <div className="fs-6 ms-4 ps-2 text-white text-opacity-75">Desarrollador: {juegoEspecifico.developer}</div>
+                    <div className="fs-3 ms-4 ps-2 mt-5">{juegoEspecifico.title}
+                    {
+                        favorito ? <button type="button" className="btn btn-danger ms-3" onClick={eliminarFavorito}><i className="bi bi-heart-fill"></i></button> : <button type="button" className="btn btn-danger ms-3" onClick={agregarFavorito}><i className="bi bi-heart"></i></button>
+                    }
+                    </div>
+                    <div className="fs-6 ms-4 mt-3 ps-2 text-white text-opacity-75">Desarrollador: {juegoEspecifico.developer}</div>
                     <div className="fs-6 ms-4 ps-2 text-white text-opacity-75">Categoría: {juegoEspecifico.categorie}</div>
                     <div className="fs-6 ms-4 ps-2 text-white text-opacity-75">Fecha de Estreno: {juegoEspecifico.date}</div>
                     
