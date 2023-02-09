@@ -119,3 +119,7 @@
         margin: auto;
     }
 }
+
+.tituloCarouselDestacado:hover{
+    cursor: pointer;
+}

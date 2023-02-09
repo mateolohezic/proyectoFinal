@@ -33,16 +33,16 @@ function CarouselDestacados() {
                     <div id="carouselDestacados" className="carousel slide carouselDestacadoSombra" data-bs-ride="carousel">
                             <div className="carousel-inner cajaCarousel">
                                 <div className="carousel-item active" data-bs-interval="2000">
-                                <img src={destacados.image1} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"  onClick={setearJuego}/>
+                                <img src={destacados.image1} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"/>
                                 </div>
                                 <div className="carousel-item" data-bs-interval="2000">
-                                <img src={destacados.image2} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"  onClick={setearJuego}/>
+                                <img src={destacados.image2} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"/>
                                 </div>
                                 <div className="carousel-item" data-bs-interval="2000">
-                                <img src={destacados.image3} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"  onClick={setearJuego}/>
+                                <img src={destacados.image3} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"/>
                                 </div>
                                 <div className="carousel-item" data-bs-interval="2000">
-                                <img src={destacados.image4} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"  onClick={setearJuego}/>
+                                <img src={destacados.image4} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"/>
                                 </div>
                                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselDestacados" data-bs-slide="prev">
                                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -57,7 +57,7 @@ function CarouselDestacados() {
                 </div>
                 <div className="col-xxl-5 col-xl-5 col-lg-5 col-sm-12 col-md-12 text-white p-0 bg-dark cajaInformacionDestacado">
                     <div className='d-flex justify-content-between align-items-top mt-2'>
-                        <div className="fs-2 tituloCarouselDestacado"><b>{destacados.title}</b></div>
+                        <div className="fs-2 tituloCarouselDestacado" onClick={setearJuego}><b>{destacados.title}</b></div>
                         <a className="ms-4 mt-4 me-5 text-white text-opacity-75 botonVerMas text-decoration-none" href='/Game' onClick={ () => localStorage.setItem('idJuego', destacados._id)}><i className="bi bi-caret-right-fill"></i> Ver más</a>
                     </div>
                     { destacados.price > 0 ? <div className="fs-2 ms-4">$ {destacados.price} ARS</div> : <div className="fs-2 ms-4">Gratis</div> }

@@ -7,8 +7,8 @@ function Destacados() {
     const [juegos, setJuegos] = useState([]);
     const [encontro, setEncontro] = useState(false);
 
-    getJuegosDestacados = () =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
+    const getJuegosDestacados = async () =>{
+        await axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })

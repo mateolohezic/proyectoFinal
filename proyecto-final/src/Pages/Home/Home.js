@@ -10,6 +10,7 @@ import SeccionCaracteristicasEmpresa from '../../Components/SeccionCaracteristic
 function Home() {
 
     const [destacados, setDestacados] = useState([])
+    const [carga, setCarga] = useState(true)
 
     useEffect(() =>{
       axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
@@ -34,9 +35,7 @@ function Home() {
       <>
            
       <div className="fondoHome">
-      {
-        destacados.length > 0 ? <CarouselDestacados /> : <></>
-      }
+        { carga ? <CarouselDestacados /> : <></>}
         <CarouselNovedades />
         <AccordionCategorias />
         <SeccionCaracteristicasEmpresa />
