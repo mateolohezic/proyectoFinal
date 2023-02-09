@@ -30,7 +30,7 @@ function App() {
       if (document.readyState === "complete") {
         setCargando(false);
       }
-    }, 700);
+    }, 2000);
 }, [])
 
   return (

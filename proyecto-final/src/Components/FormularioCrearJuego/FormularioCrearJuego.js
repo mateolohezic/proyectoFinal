@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import OpcionCategoria from '../OpcionCategoria/OpcionCategoria';
-import './FormularioCrearJuego.css';
 import { useForm } from "react-hook-form";
 
 function FormularioCrearJuego() {
@@ -11,7 +10,7 @@ function FormularioCrearJuego() {
     const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })
@@ -22,7 +21,7 @@ function FormularioCrearJuego() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/categorias/obtener-categorias`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/obtener-categorias`)
         .then((response) =>{
             setCategorias(response.data);
         })
@@ -37,7 +36,7 @@ function FormularioCrearJuego() {
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-        axios.post(`http://localhost:8000/crear-juego`, {
+        axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/crear-juego`, {
             accessToken: tokenAdmin,
             title: data.title,
             developer: data.developer,

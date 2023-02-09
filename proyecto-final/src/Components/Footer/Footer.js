@@ -1,5 +1,5 @@
 import React from 'react'
-import './Footer.css';
+import './footer.css';
 import logoZonaPlay from './logo.png'
 
 const Footer = () => {
@@ -31,13 +31,22 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="box">
-              <h2>SÍGUENOS</h2>
-              <div className="redes">
-                <a href="https://www.linkedin.com/in/mateo-bernab%C3%A9-lohezic-8b5329222/?originalSubdomain=ar"><i className="bi bi-linkedin"></i></a>
-                <a href="https://www.instagram.com/mateo.lohezic/"><i className="bi bi-instagram"></i></a>
-                <a href="https://github.com/mateolohezic"><i className="bi bi-github"></i></a>
-                <a href="https://www.facebook.com/mateo.lohezic"><i className="bi bi-facebook"></i></a>
+            <div className='d-flex flex-column'>
+              <div className="box">
+                <h2>SÍGUENOS</h2>
+                <div className="redes">
+                  <a href="https://www.linkedin.com/in/mateo-bernab%C3%A9-lohezic-8b5329222/?originalSubdomain=ar"><i className="bi bi-linkedin"></i></a>
+                  <a href="https://www.instagram.com/mateo.lohezic/"><i className="bi bi-instagram"></i></a>
+                  <a href="https://github.com/mateolohezic"><i className="bi bi-github"></i></a>
+                  <a href="https://www.facebook.com/mateo.lohezic"><i className="bi bi-facebook"></i></a>
+                </div>
+              </div>
+              <div className="box">
+                <div className="informacionContacto mt-3">
+                  <div>Argentina, Tucumán, CP 4107</div>
+                  <div>zonaplay@gmail.com</div>
+                  <div>+54-381-5690169</div>
+                </div>
               </div>
             </div>
           </div>

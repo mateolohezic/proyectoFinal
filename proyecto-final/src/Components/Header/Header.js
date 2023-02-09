@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import logoZonaPlay from './logo.png'
-import './Header.css';
+import './header.css';
 
 function Header() {
 

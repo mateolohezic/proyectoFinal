@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 
 function FormularioIniciarSesion() {
@@ -8,7 +8,7 @@ function FormularioIniciarSesion() {
     const [error, setError] = useState(false)
     
     const onSubmit = async(datos) => {
-        const respuesta = await axios.post(`http://localhost:8000/users/login-user`, {
+        const respuesta = await axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/login-user`, {
             username: datos.username,
             password: datos.password
         })
@@ -54,7 +54,7 @@ function FormularioIniciarSesion() {
                     ¿No tienes una cuenta?
                     <a className="registerIniciarSesion ms-2" href="/Register">Regístrate</a>
                     <div>
-                    ¿Olvidaste tu contraseña? <a className="registerIniciarSesion ms-2" href='/'>Restablecer</a>
+                    ¿Olvidaste tu contraseña? <a className="registerIniciarSesion ms-2" href='/404'>Restablecer</a>
                     </div>
                 </div>
                 <div className="d-flex flex-row-reverse mt-3">

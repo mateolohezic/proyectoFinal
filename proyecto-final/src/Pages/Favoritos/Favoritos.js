@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import './Favoritos.css';
 import CardFavoritos from '../../Components/CardFavoritos/CardFavoritos';
 
 function Favoritos() {
@@ -9,7 +8,7 @@ function Favoritos() {
     const [encontro, setEncontro] = useState(false);
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/favorito/obtener-favorito`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/favorito/obtener-favorito`)
         .then((response) =>{
             setFavorito(response.data);
         })

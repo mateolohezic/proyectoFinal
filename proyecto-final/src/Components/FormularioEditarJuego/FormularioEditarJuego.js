@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import './FormularioEditarJuego.css';
 import OpcionCategoria from '../OpcionCategoria/OpcionCategoria';
 import { useForm } from "react-hook-form";
 
@@ -11,7 +10,7 @@ function FormularioEditarJuego(juego) {
     const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/categorias/obtener-categorias`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/obtener-categorias`)
         .then((response) =>{
             setCategorias(response.data.filter(categoria => categoria.name !== juego.juego.juego.categorie));
         })
@@ -22,22 +21,28 @@ function FormularioEditarJuego(juego) {
     }, [])
 
     const onSubmit = (data) => {
-        axios.patch(`http://localhost:8000/editar-juego`, {
-            id: juego.juego.juego._id,
-            title: data.title,
-            developer:  data.developer,
-            categorie:  data.categorie,
-            date:  data.date,
-            price:  data.price,
-            synopsis:  data.synopsis,
-            image1:  data.image1,
-            image2:  data.image2,
-            image3:  data.image3,
-            image4:  data.image4,
-            favorite: juego.juego.juego.favorite,
-            published: juego.juego.juego.published,
-        })
-        window.location.reload(true)
+        const tokenAdmin = localStorage.getItem('token')
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+            axios.patch(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/editar-juego`, {
+                accessToken: tokenAdmin,        
+                id: juego.juego.juego._id,
+                title: data.title,
+                developer:  data.developer,
+                categorie:  data.categorie,
+                date:  data.date,
+                price:  data.price,
+                synopsis:  data.synopsis,
+                image1:  data.image1,
+                image2:  data.image2,
+                image3:  data.image3,
+                image4:  data.image4,
+                favorite: juego.juego.juego.favorite,
+                published: juego.juego.juego.published,
+            })
+            window.location.reload(true)
+        }
     }
 
     return (

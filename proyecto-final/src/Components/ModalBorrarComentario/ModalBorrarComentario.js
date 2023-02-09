@@ -14,7 +14,7 @@ function ModalBorrarComentario( comentario ) {
     if (!tokenAdmin) {
         window.location.replace('/404')
     } else {
-        axios.delete(`http://localhost:8000/comentarios/eliminar-comentario`, {
+        axios.delete(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/comentarios/eliminar-comentario`, {
         data: {
             accessToken: tokenAdmin,
             id: comentario.comentario._id

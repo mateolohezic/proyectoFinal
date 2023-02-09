@@ -1,14 +1,13 @@
 import axios from 'axios';
 import React from 'react'
 import { useForm } from "react-hook-form";
-import './Soporte.css';
 
 function Soporte() {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-        axios.post(`http://localhost:8000/consulta/crear-consulta`, data)
+        axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/consulta/crear-consulta`, data)
         window.location.reload(true)
     }
 

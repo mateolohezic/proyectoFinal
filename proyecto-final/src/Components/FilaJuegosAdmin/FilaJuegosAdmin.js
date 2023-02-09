@@ -5,7 +5,6 @@ import BotonQuitarFavorito from '../BotonQuitarFavorito/BotonQuitarFavorito';
 import BotonQuitarPublico from '../BotonQuitarPublico/BotonQuitarPublico';
 import ModalBorrarJuego from '../ModalBorrarJuego/ModalBorrarJuego';
 import ModalEditarJuego from '../ModalEditarJuego/ModalEditarJuego';
-import './FilaJuegosAdmin.css';
 
 function FilaJuegosAdmin( juego ) {
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react'
 import axios from 'axios';
-import './AccordionCategoriaCard.css'
+import './accordionCategoriaCard.css'
 import AccordionCategoriaCardJuego from '../AccordionCategoriaCardJuego/AccordionCategoriaCardJuego';
 
 
@@ -10,7 +10,7 @@ function AccordionCategoriaCard(categoria) {
     const [juegosCategoria, setJuegosCategoria] = useState([])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegosCategoria(response.data.filter(juego => juego.published === true && juego.categorie === categoria.categoria.name));
         })

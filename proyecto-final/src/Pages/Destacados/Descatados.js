@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import './Destacados.css';
 import BusquedaCardJuego from '../../Components/BusquedaCardJuego/BusquedaCardJuego';
 
 function Destacados() {
@@ -9,7 +8,7 @@ function Destacados() {
     const [encontro, setEncontro] = useState(false);
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })

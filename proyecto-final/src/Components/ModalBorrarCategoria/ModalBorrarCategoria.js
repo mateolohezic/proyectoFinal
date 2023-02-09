@@ -10,12 +10,18 @@ function ModalBorrarCategoria( categoria ) {
     const handleShow = () => setShow(true);
 
     const eliminarCategoria = async () => {
-    axios.delete(`http://localhost:8000/categorias/eliminar-categoria`, {
-    data: {
-        id: categoria.categoria._id
-    }}
-    )
-    window.location.reload(true);
+        const tokenAdmin = localStorage.getItem('token')
+        if (!tokenAdmin) {
+            window.location.replace('/404')
+        } else {
+        axios.delete(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/categorias/eliminar-categoria`, {
+        data: {
+            accessToken: tokenAdmin,
+            id: categoria.categoria._id
+        }}
+        )
+        window.location.reload(true);
+        }   
     }
 
     return (

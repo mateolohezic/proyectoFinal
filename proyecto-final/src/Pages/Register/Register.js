@@ -1,6 +1,6 @@
 import React from 'react'
 import FormularioCrearUser from '../../Components/FormularioCrearUsuario/FormularioCrearUsuario';
-import './Register.css';
+import './register.css';
 
 function Register() {
 

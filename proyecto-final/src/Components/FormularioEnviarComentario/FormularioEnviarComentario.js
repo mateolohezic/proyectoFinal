@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
-import './FormularioEnviarComentario.css';
 
 function FormularioEnviarComentario() {
 
@@ -12,7 +11,7 @@ function FormularioEnviarComentario() {
     const [userEspecifico, setUserEspecifico] = useState({});
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/${juegoActual}`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/${juegoActual}`)
         .then((response) =>{
             setJuegoEspecifico(response.data);
         })
@@ -22,7 +21,7 @@ function FormularioEnviarComentario() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/users/${userLogeado}`)
+        axios.get(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/users/${userLogeado}`)
         .then((response) =>{
             setUserEspecifico(response.data);
         })
@@ -35,7 +34,7 @@ function FormularioEnviarComentario() {
         const comentario = data.comentario;
         const game = juegoEspecifico.title;
         const username = userEspecifico.username;
-        axios.post(`http://localhost:8000/comentarios/crear-comentario`, {
+        axios.post(`https://mateo-lohezic-Proyecto-Final-RC.up.railway.app/comentarios/crear-comentario`, {
         username,
         game,
         comentario

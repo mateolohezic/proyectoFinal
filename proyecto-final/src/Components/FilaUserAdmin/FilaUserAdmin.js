@@ -1,5 +1,4 @@
 import React from 'react'
-import './FilaUserAdmin.css';
 import BotonEstadoUsuario from '../BotonEstadoUsuario/BotonEstadoUsuario';
 import ModalBorrarUser from '../ModalBorrarUser/ModalBorrarUser';
 
