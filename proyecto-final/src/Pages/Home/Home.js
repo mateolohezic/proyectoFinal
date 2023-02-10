@@ -35,7 +35,7 @@ function Home() {
       <>
            
       <div className="fondoHome">
-        { carga ? <CarouselDestacados /> : <></>}
+        { destacados.length > 0 ? <CarouselDestacados /> : <></>}
         <CarouselNovedades />
         <AccordionCategorias />
         <SeccionCaracteristicasEmpresa />
