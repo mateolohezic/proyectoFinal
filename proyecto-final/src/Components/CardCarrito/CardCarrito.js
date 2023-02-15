@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function CardCarrito(juego) {
 
+    const [userCarrito, setUser] = useState([])
+    const idUser = localStorage.getItem('idUsuarioLogeado');
+    
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/users/${idUser}`)
+        .then((response) =>{
+            setUser(response.data.cart);
+        })
+        .catch((error) =>{
+            console.error(error);
+        })
+    }, [idUser])
+
     const eliminarDelCarrito = async () => {
-        await axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/eliminar-carrito`, {
-        data: {
-            id: juego.juego._id
-        }}
-        )
+
+        for(let i = 0; i < userCarrito.length; i++) {
+            if(userCarrito[i]._id === juego.juego._id) {
+                userCarrito.splice(i, 1);
+                break;
+            }
+        }
+        await axios.patch(`http://localhost:8000/users/agregar-carrito`, {
+            id: idUser,
+            cart: userCarrito
+        })
         window.location.reload(true);
         }
 

@@ -12,9 +12,11 @@ function BotonLoginPerfilAdmin() {
 
     useEffect(() =>{
         if (id !== null){
-            axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${id}`)
+            axios.get(`http://localhost:8000/users/${id}`)
             .then((response) =>{
                 setUsers(response.data);
+                setCarrito(response.data.cart);
+                setFavoritos(response.data.favorites)
             })
             .catch((error) =>{
                 console.error(error);
@@ -23,37 +25,9 @@ function BotonLoginPerfilAdmin() {
     }, [users])
 
     const cerrarSesion = async () => {
-        await carrito.map(juego => {
-             axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/eliminar-carrito`, {
-                data: {
-                    id: juego._id
-            }})
-        })
         localStorage.removeItem('idUsuarioLogeado');
         localStorage.removeItem('token');
     }
-
-    useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/obtener-carrito`)
-        .then((response) =>{
-            setCarrito(response.data);
-        })
-        .catch((error) =>{
-            console.error(error);
-        })
-    
-    }, [])
-
-    useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/obtener-favorito`)
-        .then((response) =>{
-            setFavoritos(response.data);
-        })
-        .catch((error) =>{
-            console.error(error);
-        })
-    
-    }, [])
 
     useEffect(() =>{
         if (carrito.length > 0) {

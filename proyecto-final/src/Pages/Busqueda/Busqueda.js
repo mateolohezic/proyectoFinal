@@ -14,7 +14,7 @@ function Busqueda() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
+        axios.get(`http://localhost:8000/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })

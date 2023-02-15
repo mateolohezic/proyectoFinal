@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function CardFavoritos(juego) {
 
-    const eliminarFavorito = async () =>{
-        await axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/eliminar-favorito`, {
-            data: {
-                id: juego.juego._id
+    const [userFavoritos, setUser] = useState([])
+    const idUser = localStorage.getItem('idUsuarioLogeado');
+
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/users/${idUser}`)
+        .then((response) =>{
+            setUser(response.data.favorites);
+        })
+        .catch((error) =>{
+            console.error(error);
+        })
+    }, [idUser])
+
+    const eliminarDeFavoritos = async () => {
+
+        for(let i = 0; i < userFavoritos.length; i++) {
+            if(userFavoritos[i]._id === juego.juego._id) {
+                userFavoritos.splice(i, 1);
+                break;
             }
+        }
+        await axios.patch(`http://localhost:8000/users/agregar-favorito`, {
+            id: idUser,
+            favorites: userFavoritos
         })
         window.location.reload(true);
-    }
+        }
 
     return (
         <>
@@ -25,7 +44,7 @@ function CardFavoritos(juego) {
                         </div>
                     </div>
                     <div>$ {juego.juego.price} ARS</div>
-                    <button type="button" className="btn btn-danger" onClick={eliminarFavorito}><i className="bi bi-trash fs-6"></i></button>
+                    <button type="button" className="btn btn-danger" onClick={eliminarDeFavoritos}><i className="bi bi-trash fs-6"></i></button>
                 </div>
             </div>
         </>

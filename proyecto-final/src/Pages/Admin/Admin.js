@@ -8,6 +8,7 @@ import FilaCategoriaAdmin from '../../Components/FilaCategoriasAdmin/FilaCategor
 import FilaUserAdmin from '../../Components/FilaUserAdmin/FilaUserAdmin';
 import FilaComentarioAdmin from '../../Components/FilaComentarioAdmin/FilaComentarioAdmin';
 import FilaConsultasAdmin from '../../Components/FilaConsultasAdmin/FilaConsultasAdmin';
+import FilaComprasAdmin from '../../Components/FilaComprasAdmin/FilaComprasAdmin';
 
 function Admin() {
 
@@ -22,9 +23,10 @@ function Admin() {
     const [users, setUsers] = useState([])
     const [comentarios, setComentarios] = useState([])
     const [consultas, setConsultas] = useState([])
+    const [compras, setCompras] = useState([])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
+        axios.get(`http://localhost:8000/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })
@@ -35,7 +37,18 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/obtener-categorias`)
+        axios.get(`http://localhost:8000/compra/obtener-compra`)
+        .then((response) =>{
+            setCompras(response.data);
+        })
+        .catch((error) =>{
+            console.error(error);
+        })
+
+    }, [])
+
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/categorias/obtener-categorias`)
         .then((response) =>{
             setCategorias(response.data);
         })
@@ -46,7 +59,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/obtener-users`)
+        axios.get(`http://localhost:8000/users/obtener-users`)
         .then((response) =>{
             setUsers(response.data);
         })
@@ -57,7 +70,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/comentarios/obtener-comentario`)
+        axios.get(`http://localhost:8000/comentarios/obtener-comentario`)
         .then((response) =>{
             setComentarios(response.data);
         })
@@ -68,7 +81,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/consulta/obtener-consulta`)
+        axios.get(`http://localhost:8000/consulta/obtener-consulta`)
         .then((response) =>{
             setConsultas(response.data);
         })
@@ -187,7 +200,7 @@ function Admin() {
                 </div>
             </div>
         </div>
-        <div className="mt-5 text-center mx-auto fs-1 border-bottom border-1 pb-4 w-75">Consultas</div>
+        <div className="mt-5 text-center mx-auto fs-1 border-bottom border-1 pb-4 w-75">Administración de Consultas</div>
         <div className="container-fluid row text-center justify-content-center mt-5 mb-5 m-0 p-0">
             <div className="col-12 mt-2">
                 <div className="table-responsive mt-3">
@@ -205,6 +218,29 @@ function Admin() {
                         <tbody>
                         {
                             consultas.sort((a,b) => (a.username > b.username) ? 1 : ((b.username > a.username) ? -1 : 0)).map(cadaConsulta => <FilaConsultasAdmin key={cadaConsulta._id} consulta={cadaConsulta} />)
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div className="mt-5 text-center mx-auto fs-1 border-bottom border-1 pb-4 w-75">Administración de Compras</div>
+        <div className="container-fluid row text-center justify-content-center mt-5 mb-5 m-0 p-0">
+            <div className="col-12 mt-2">
+                <div className="table-responsive mt-3">
+                    <table className="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Monto en ARS</th> 
+                            <th>Cantidad</th> 
+                            <th>Estado</th> 
+                            <th>Eliminar</th> 
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            compras.map(cadaCompra => <FilaComprasAdmin key={cadaCompra._id} compra={cadaCompra} />)
                         }
                         </tbody>
                     </table>

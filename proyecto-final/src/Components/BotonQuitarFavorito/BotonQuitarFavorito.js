@@ -9,7 +9,7 @@ function BotonQuitarFavorito( juego ) {
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/editar-juego`, {
+        await axios.patch(`http://localhost:8000/editar-juego`, {
             accessToken: tokenAdmin,
             id: juego.juego._id,
             title: juego.juego.title,

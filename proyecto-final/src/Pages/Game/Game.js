@@ -7,9 +7,10 @@ import CardComentario from '../../Components/CardComentario/CardComentario';
 
 function Game() {
     
-    const [favorito, setFavorito] = useState(false)
+    const [user, setUser] = useState({})
+    const [carritoUser, setCarritoUser] = useState([])
+    const [favoritosUser, setFavoritosUser] = useState([])
     const [comentarios, setComentarios] = useState([])
-    const [juegosFavoritos, setjuegosFavoritos] = useState([])
     const [hayComentarios, setHayComentarios] = useState(false)
     const [juegoEspecifico, setJuegoEspecifico] = useState({});
     const [logeado, setLogeado] = useState(false);
@@ -17,41 +18,33 @@ function Game() {
     const idUser = localStorage.getItem('idUsuarioLogeado');
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/${id}`)
+        axios.get(`http://localhost:8000/${id}`)
         .then((response) =>{
             setJuegoEspecifico(response.data);
         })
         .catch((error) =>{
             console.error(error);
         })
-    }, [])
+    }, [id])
 
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/users/${idUser}`)
+        .then((response) =>{
+            setUser(response.data);
+        })
+        .catch((error) =>{
+            console.error(error);
+        })
+    }, [idUser])
     
     useEffect(() =>{
         if (idUser !== null){
             setLogeado(true)
         }
-    }, [juegoEspecifico])
-
-    useEffect(() =>{
-
-        const obtenerFavoritos = async () =>{        
-        await axios.get('https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/obtener-favorito')
-        .then((response) =>{
-            setjuegosFavoritos(response.data)
-        })
-        const favoritos = await juegosFavoritos.filter(favoritos => favoritos.idJuego === juegoEspecifico._id)
-        if (favoritos.length > 0) {
-            setFavorito(true)
-        }}
-        
-        obtenerFavoritos()
-
-    }, [juegoEspecifico])
-
+    }, [idUser])
     
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/comentarios/obtener-comentario`)
+        axios.get(`http://localhost:8000/comentarios/obtener-comentario`)
         .then((response) =>{
             setComentarios(response.data);
         })
@@ -61,37 +54,38 @@ function Game() {
 
     }, [])
 
+    useEffect(() =>{
+        const actualizarCarrito = async () => {
+            await setCarritoUser(user.cart)
+            await setFavoritosUser(user.favorites)
+        }
+        actualizarCarrito()
+    }, [user])
+
     const agregarCarrito = async () =>{
-        await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/carrito/crear-carrito`, {
-            title: juegoEspecifico.title,
-            price: juegoEspecifico.price,
-            image1: juegoEspecifico.image1
+
+        const carrito = carritoUser;
+        const count = await carrito.push(juegoEspecifico);
+        await axios.patch(`http://localhost:8000/users/agregar-carrito`, {
+            id: user._id,
+            cart: carrito
         })
         window.location.replace("/Carrito");
     }
 
     const agregarFavorito = async () =>{
-        await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/crear-favorito`, {
-            title: juegoEspecifico.title,
-            price: juegoEspecifico.price,
-            image1: juegoEspecifico.image1,
-            idJuego: juegoEspecifico._id
+
+        const favoritos = favoritosUser;
+        const countFavoritos = await favoritos.push(juegoEspecifico);
+        await axios.patch(`http://localhost:8000/users/agregar-favorito`, {
+            id: user._id,
+            favorites: favoritos
         })
-        window.location.reload(true);
+        window.location.replace("/Favoritos")
     }
 
     const irALogin =  () =>{
         window.location.replace("/Login");
-    }
-
-    const eliminarFavorito = async () =>{
-        const favoritos = juegosFavoritos.filter(favoritos => favoritos.idJuego === juegoEspecifico._id)
-        await axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/eliminar-favorito`, {
-            data: {
-                id: favoritos[0]._id
-            }
-        })
-        window.location.reload(true);
     }
         
     const comentariosCoinciden = comentarios.filter(comentario => comentario.game === juegoEspecifico.title);
@@ -118,7 +112,7 @@ function Game() {
                     <div className="mt-5 fichaTecnicaTexto fs-1">Ficha técnica</div>
                     <div className="fs-3 ms-4 ps-2 mt-5">{juegoEspecifico.title}
                     {
-                        favorito ? <button type="button" className="btn btn-danger ms-3" onClick={eliminarFavorito}><i className="bi bi-heart-fill"></i></button> : <button type="button" className="btn btn-danger ms-3" onClick={agregarFavorito}><i className="bi bi-heart"></i></button>
+                        logeado && <button type="button" className="btn btn-danger ms-3" onClick={agregarFavorito}><i className="bi bi-heart-fill"></i></button>
                     }
                     </div>
                     <div className="fs-6 ms-4 mt-3 ps-2 text-white text-opacity-75">Desarrollador: {juegoEspecifico.developer}</div>

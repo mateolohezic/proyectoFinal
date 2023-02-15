@@ -6,7 +6,7 @@ function CarouselDestacados() {
 
     const [destacados, setDestacados] = useState([])
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
+        axios.get(`http://localhost:8000/obtener-juegos`)
         .then((response) =>{
             setDestacados(response.data.filter(juego => juego.favorite === true && juego.published === true).sort((a, b) => 0.5 - Math.random()).shift());
         })

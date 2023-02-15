@@ -8,12 +8,12 @@ function FormularioCrearUser() {
     const [users, setUsers] = useState([])
 
     const onSubmit = async (data) => {
-        await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/crear-user`, data)
+        await axios.post(`http://localhost:8000/users/crear-user`, data)
         window.location.replace('/Login');
     }
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/obtener-users`)
+        axios.get(`http://localhost:8000/users/obtener-users`)
         .then((response) =>{
             setUsers(response.data);
         })

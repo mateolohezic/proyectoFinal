@@ -4,24 +4,30 @@ import CardFavoritos from '../../Components/CardFavoritos/CardFavoritos';
 
 function Favoritos() {
 
+    const [user, setUser] = useState({})
     const [favorito, setFavorito] = useState([])
     const [encontro, setEncontro] = useState(false);
+    const idUser = localStorage.getItem('idUsuarioLogeado');
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/favorito/obtener-favorito`)
+        const actualizarFavoritos = async () => {
+        axios.get(`http://localhost:8000/users/${idUser}`)
         .then((response) =>{
-            setFavorito(response.data);
+            setUser(response.data);
+            setFavorito(response.data.favorites)
         })
         .catch((error) =>{
             console.error(error);
-        })
+        })}
 
-    }, [])
+        actualizarFavoritos()
+    }, [idUser])
 
     useEffect(() =>{
+        if(favorito){
         if (favorito.length > 0) {
             setEncontro(true)
-        }
+        }}
     }, [favorito])
 
     return (

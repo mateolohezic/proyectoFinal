@@ -18,6 +18,8 @@ import Header from "./Components/Header/Header";
 import Busqueda from "./Pages/Busqueda/Busqueda";
 import MetodoPago from "./Pages/MetodoPago/MetodoPago";
 import Nosotros from "./Pages/Nosotros/Nosotros";
+import Failure from "./Pages/Failure/Failure";
+import Success from "./Pages/Success/Success";
 
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
       <Route path="/Busqueda" element={<Busqueda />} />
       <Route path="/MetodoPago" element={<MetodoPago />} />
       <Route path="/Nosotros" element={<Nosotros />} />
+      <Route path="/Failure" element={<Failure />} />
+      <Route path="/Success" element={<Success />} />
     </Routes>
     <Footer />
     </>
