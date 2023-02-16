@@ -25,17 +25,18 @@ function MetodoPago() {
 
     const pagarMP = async () =>{
         const res = await axios.post(`http://localhost:8000/pago/generar-pago`, {
-                title: "ZONAPlay",
+                title: "ZONA Play",
                 price: totalMercadoPago,
                 quantity: carrito.length,
-                user: idUser
+                user: user.username
             })
         
         const data = await res.data.global
 
         await axios.post(`http://localhost:8000/compra/crear-compra`, {
             idCompra: data.id,
-            items: data.items
+            price: totalMercadoPago,
+            user: user.username
         })
 
         await axios.patch(`http://localhost:8000/users/agregar-carrito`, {

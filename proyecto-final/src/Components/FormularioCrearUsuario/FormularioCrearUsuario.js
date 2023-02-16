@@ -66,7 +66,7 @@ function FormularioCrearUser() {
                                 value: 99,
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>La edad debe ser menor a 99.</p>
                             },
-                        })}  name="age"  defaultValue="" max={999}/>
+                        })}  name="age"  defaultValue="" max={999} min={1}/>
                         {errors.age && errors.age.message}
                     </div>
                     <div className="mb-3 col-xxl-6 col-xl-6 col-lg-6 col-sm-12 col-md-12">
@@ -105,7 +105,7 @@ function FormularioCrearUser() {
                         <input type="text" className="form-control"  {...register("email", {
                             required:  <p className='text-danger mt-2 ms-1 fs-6'>E-mail requerido.</p>,
                             pattern: {
-                                value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/i,
+                                value: /^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/i,
                                 message: <p className='text-danger mt-2 ms-1 fs-6'>E-mail invalido.</p>
                             },
                             validate: value => usersEmailCoinciden.length === 0 || <p className='text-danger mt-2 ms-1 fs-6'>Este E-mail ya esta en uso.</p>

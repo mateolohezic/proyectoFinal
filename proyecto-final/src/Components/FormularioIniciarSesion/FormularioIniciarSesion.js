@@ -54,7 +54,7 @@ function FormularioIniciarSesion() {
                     ¿No tienes una cuenta?
                     <a className="registerIniciarSesion ms-2" href="/Register">Regístrate</a>
                     <div>
-                    ¿Olvidaste tu contraseña? <a className="registerIniciarSesion ms-2" href='/404'>Restablecer</a>
+                    ¿Olvidaste tu contraseña? <a className="registerIniciarSesion ms-2" href='/RestablecerContraseña'>Restablecer</a>
                     </div>
                 </div>
                 <div className="d-flex flex-row-reverse mt-3">

@@ -27,6 +27,7 @@ function Carrito() {
         if (carrito){
         if (carrito.length > 0) {
             setEncontro(true)
+
         }
         let sum = 0;
 
@@ -35,6 +36,7 @@ function Carrito() {
         }
         setSum(sum);
         localStorage.setItem('totalAPagar', sum)
+
         }
     }, [carrito])
 

@@ -40,7 +40,9 @@ function CardFavoritos(juego) {
                             <img src={juego.juego.image1} className="imagenCarrito" alt='imagen'/>
                         </div>
                         <div className="cajaImagenCarrito">
-                            <div className='ms-4'>{juego.juego.title}</div>
+                            <a href='/Game' className='text-decoration-none text-dark' onClick={ () => localStorage.setItem('idJuego',juego.juego._id)}>
+                                <div className='ms-4'>{juego.juego.title}</div>
+                            </a>
                         </div>
                     </div>
                     <div>$ {juego.juego.price} ARS</div>

@@ -20,6 +20,8 @@ import MetodoPago from "./Pages/MetodoPago/MetodoPago";
 import Nosotros from "./Pages/Nosotros/Nosotros";
 import Failure from "./Pages/Failure/Failure";
 import Success from "./Pages/Success/Success";
+import RestablecerContraseña from "./Pages/RestablecerContraseña/RestablecerContraseña";
+import RestablecerContraseñaSiguiente from "./Pages/RestablecerContraseñaSiguiente/RestablecerContraseñaSiguiente";
 
 
 function App() {
@@ -58,6 +60,8 @@ function App() {
       <Route path="/Nosotros" element={<Nosotros />} />
       <Route path="/Failure" element={<Failure />} />
       <Route path="/Success" element={<Success />} />
+      <Route path="/RestablecerContraseña" element={<RestablecerContraseña />} />
+      <Route path="/RestablecerContraseñaSiguiente" element={<RestablecerContraseñaSiguiente />} />
     </Routes>
     <Footer />
     </>

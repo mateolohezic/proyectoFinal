@@ -49,7 +49,7 @@ function Soporte() {
                                 <input type="text" className="form-control"  {...register("email", {
                                     required:  <p className='text-danger mt-2 ms-1 fs-6'>E-mail requerido.</p>,
                                     pattern: {
-                                        value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/i,
+                                        value: /^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/i,
                                         message: <p className='text-danger mt-2 ms-1 fs-6'>E-mail invalido.</p>
                                     },
                                 })}  name="email"  defaultValue="" maxLength={50}/>
@@ -61,9 +61,13 @@ function Soporte() {
                                 <label className="form-label">Escribe tu consulta.</label>
                                 <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"{...register("consulta", {
                                     required: <p className='text-danger mt-2 ms-1 fs-6'>Campo requerido.</p>,
-                                    pattern: {
-                                        value: /^[a-zA-Z0-9áéíóú:,." ]{1,1000}$/i,
-                                        message: <p className='text-danger mt-2 ms-1 fs-6'>Campo invalido.</p>
+                                    maxLength: {
+                                        value: 1000,
+                                        message: <p className='text-danger mt-2 ms-1 fs-6'>Puede escribir hasta 1000 caracteres.</p>
+                                    },
+                                    minLength: {
+                                        value: 10,
+                                        message: <p className='text-danger mt-2 ms-1 fs-6'>Debe escribir más de 10 caracteres.</p>
                                     },
                                 })} name="consulta" defaultValue="" maxLength={1000}></textarea>
                                 {errors.consulta && errors.consulta.message}
