@@ -26,7 +26,7 @@ function Admin() {
     const [compras, setCompras] = useState([])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegos(response.data);
         })
@@ -37,7 +37,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/compra/obtener-compra`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/compra/obtener-compra`)
         .then((response) =>{
             setCompras(response.data);
         })
@@ -48,7 +48,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/categorias/obtener-categorias`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/obtener-categorias`)
         .then((response) =>{
             setCategorias(response.data);
         })
@@ -59,7 +59,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/users/obtener-users`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/obtener-users`)
         .then((response) =>{
             setUsers(response.data);
         })
@@ -70,7 +70,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/comentarios/obtener-comentario`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/comentarios/obtener-comentario`)
         .then((response) =>{
             setComentarios(response.data);
         })
@@ -81,7 +81,7 @@ function Admin() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/consulta/obtener-consulta`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/consulta/obtener-consulta`)
         .then((response) =>{
             setConsultas(response.data);
         })

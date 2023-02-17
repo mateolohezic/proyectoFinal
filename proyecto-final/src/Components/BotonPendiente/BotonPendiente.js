@@ -9,7 +9,7 @@ function BotonPendiente(user) {
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-        await axios.patch(`http://localhost:8000/users/estado-user`, {
+        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/estado-user`, {
             accessToken: tokenAdmin,
             id: user.user._id,
             status: "activo"

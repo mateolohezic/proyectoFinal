@@ -14,7 +14,7 @@ function ModalBorrarCategoria( categoria ) {
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-        await axios.delete(`http://localhost:8000/categorias/eliminar-categoria`, {
+        await axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/eliminar-categoria`, {
         data: {
             accessToken: tokenAdmin,
             id: categoria.categoria._id

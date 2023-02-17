@@ -8,7 +8,7 @@ function RestablecerContraseña() {
     const [error, setError] = useState(false)
 
     const onSubmit = async(datos) => {
-        const respuesta = await axios.post(`http://localhost:8000/users/restablecer-email`, {
+        const respuesta = await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/restablecer-email`, {
             email: datos.email,
         })
         if (respuesta.status === 200) {     

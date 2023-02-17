@@ -13,7 +13,7 @@ function Home() {
     const [carga, setCarga] = useState(true)
 
     useEffect(() =>{
-      axios.get(`http://localhost:8000/obtener-juegos`)
+      axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
       .then((response) =>{
           setDestacados(response.data.filter(juego => juego.favorite === true && juego.published === true));
 

@@ -11,7 +11,7 @@ function CarouselNovedades() {
     }
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegosNovedades(response.data.filter(juego => juego.published === true ).sort((a, b) => 0.5 - Math.random()).slice(-8));
         })

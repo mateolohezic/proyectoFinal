@@ -8,7 +8,7 @@ function AccordionCategorias() {
     const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/categorias/obtener-categorias`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/obtener-categorias`)
         .then((response) =>{
             setCategorias(response.data);
         })

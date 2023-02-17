@@ -11,7 +11,7 @@ function AccordionCategoriaCard(categoria) {
     const [juegosCategoria, setJuegosCategoria] = useState([])
 
     useEffect(() =>{
-        axios.get(`http://localhost:8000/obtener-juegos`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
         .then((response) =>{
             setJuegosCategoria(response.data.filter(juego => juego.published === true && juego.categorie === categoria.categoria.name));
         })

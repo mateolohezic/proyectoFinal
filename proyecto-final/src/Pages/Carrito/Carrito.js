@@ -12,7 +12,7 @@ function Carrito() {
 
     useEffect(() =>{
         const actualizarCarrito = async () => {
-        axios.get(`http://localhost:8000/users/${idUser}`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${idUser}`)
         .then((response) =>{
             setCarritoUser(response.data.cart)
         })
