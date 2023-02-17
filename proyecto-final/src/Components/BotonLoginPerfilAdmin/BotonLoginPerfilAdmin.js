@@ -17,6 +17,12 @@ function BotonLoginPerfilAdmin() {
                 setUsers(response.data);
                 setCarrito(response.data.cart);
                 setFavoritos(response.data.favorites)
+                if (response.data.cart.length > 0) {
+                    setHayCarrito(true)
+                }
+                if (response.data.favorites.length > 0) {
+                    setHayFavoritos(true)
+                }
             })
             .catch((error) =>{
                 console.error(error);
@@ -28,18 +34,6 @@ function BotonLoginPerfilAdmin() {
         localStorage.removeItem('idUsuarioLogeado');
         localStorage.removeItem('token');
     }
-
-    useEffect(() =>{
-        if (carrito.length > 0) {
-            setHayCarrito(true)
-        }
-    }, [carrito])
-
-    useEffect(() =>{
-        if (favoritos.length > 0) {
-            setHayFavoritos(true)
-        }
-    }, [favoritos])
 
     if (users.rol === "admin") {
         return (
