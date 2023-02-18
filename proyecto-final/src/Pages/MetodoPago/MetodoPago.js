@@ -11,7 +11,7 @@ function MetodoPago() {
 
     useEffect(() =>{
         const actualizarCarrito = async () => {
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${idUser}`)
+        axios.get(`http://localhost:8000/users/${idUser}`)
         .then((response) =>{
             setUser(response.data);
             setCarritoUser(response.data.cart)
@@ -24,7 +24,7 @@ function MetodoPago() {
     }, [idUser])
 
     const pagarMP = async () =>{
-        const res = await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/pago/generar-pago`, {
+        const res = await axios.post(`http://localhost:8000/pago/generar-pago`, {
                 title: "ZONA Play",
                 price: totalMercadoPago,
                 user: user.username
@@ -32,7 +32,7 @@ function MetodoPago() {
         
         const data = await res.data.global
 
-        await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/compra/crear-compra`, {
+        await axios.post(`http://localhost:8000/compra/crear-compra`, {
             idCompra: data.id,
             price: totalMercadoPago,
             user: user.username,

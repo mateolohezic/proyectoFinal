@@ -14,7 +14,7 @@ function ModalBorrarConsulta( consulta ) {
     if (!tokenAdmin) {
         window.location.replace('/404')
     } else {
-        await axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/consulta/eliminar-consulta`, {
+        await axios.delete(`http://localhost:8000/consulta/eliminar-consulta`, {
         data: {
             accessToken: tokenAdmin,
             id: consulta.consulta._id

@@ -12,7 +12,7 @@ function BotonLoginPerfilAdmin() {
 
     useEffect(() =>{
         if (id !== null){
-            axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${id}`)
+            axios.get(`http://localhost:8000/users/${id}`)
             .then((response) =>{
                 setUsers(response.data);
                 setCarrito(response.data.cart);

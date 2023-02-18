@@ -11,7 +11,7 @@ function FormularioEditarCategoria( categoria ) {
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/categorias/editar-categoria`, {
+        await axios.patch(`http://localhost:8000/categorias/editar-categoria`, {
             accessToken: tokenAdmin,
             id: categoria.categoria.categoria._id,
             name: data.name,

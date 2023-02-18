@@ -17,24 +17,32 @@ function Game() {
     const id = localStorage.getItem('idJuego');
     const idUser = localStorage.getItem('idUsuarioLogeado');
 
+    if (id === null) {
+        window.location.replace('/')
+    }
+
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/${id}`)
-        .then((response) =>{
-            setJuegoEspecifico(response.data);
-        })
-        .catch((error) =>{
-            console.error(error);
-        })
+        if (id !== null) {
+            axios.get(`http://localhost:8000/${id}`)
+            .then((response) =>{
+                setJuegoEspecifico(response.data);
+            })
+            .catch((error) =>{
+                console.error(error);
+            })
+        }
     }, [id])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${idUser}`)
-        .then((response) =>{
-            setUser(response.data);
-        })
-        .catch((error) =>{
-            console.error(error);
-        })
+        if (idUser !== null) {   
+            axios.get(`http://localhost:8000/users/${idUser}`)
+            .then((response) =>{
+                setUser(response.data);
+            })
+            .catch((error) =>{
+                console.error(error);
+            })
+        }
     }, [idUser])
     
     useEffect(() =>{
@@ -44,7 +52,7 @@ function Game() {
     }, [idUser])
     
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/comentarios/obtener-comentario`)
+        axios.get(`http://localhost:8000/comentarios/obtener-comentario`)
         .then((response) =>{
             setComentarios(response.data);
         })
@@ -55,18 +63,20 @@ function Game() {
     }, [])
 
     useEffect(() =>{
-        const actualizarCarrito = async () => {
-            await setCarritoUser(user.cart)
-            await setFavoritosUser(user.favorites)
+        if (user) {
+            const actualizarCarrito = async () => {
+                await setCarritoUser(user.cart)
+                await setFavoritosUser(user.favorites)
+            }
+            actualizarCarrito()
         }
-        actualizarCarrito()
     }, [user])
 
     const agregarCarrito = async () =>{
 
         const carrito = carritoUser;
         const count = await carrito.push(juegoEspecifico);
-        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/agregar-carrito`, {
+        await axios.patch(`http://localhost:8000/users/agregar-carrito`, {
             id: user._id,
             cart: carrito
         })
@@ -77,7 +87,7 @@ function Game() {
 
         const favoritos = favoritosUser;
         const countFavoritos = await favoritos.push(juegoEspecifico);
-        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/agregar-favorito`, {
+        await axios.patch(`http://localhost:8000/users/agregar-favorito`, {
             id: user._id,
             favorites: favoritos
         })

@@ -8,7 +8,7 @@ function RestablecerContraseñaSiguiente() {
     const idUser = localStorage.getItem('idUsuarioRestablecer');
 
     const onSubmit = async (datos) => {
-        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/restablecer-password`, {
+        await axios.patch(`http://localhost:8000/users/restablecer-password`, {
             id: idUser,
             password: datos.password
         })

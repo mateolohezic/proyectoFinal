@@ -9,7 +9,7 @@ function Success() {
 
     useEffect(() =>{
         const actualizarCarrito = async () => {
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${idUser}`)
+        axios.get(`http://localhost:8000/users/${idUser}`)
         .then((response) =>{
             setUser(response.data);
         })
@@ -22,11 +22,11 @@ function Success() {
 
     const pagarCompra = async () =>{
 
-        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/compra/pagar-compra`, {
+        await axios.patch(`http://localhost:8000/compra/pagar-compra`, {
             id: idCompraPagada,
         })
 
-        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/agregar-carrito`, {
+        await axios.patch(`http://localhost:8000/users/agregar-carrito`, {
             id: user._id,
             cart: []
         })

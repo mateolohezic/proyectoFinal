@@ -11,7 +11,7 @@ function FormularioEnviarComentario() {
     const [userEspecifico, setUserEspecifico] = useState({});
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/${juegoActual}`)
+        axios.get(`http://localhost:8000/${juegoActual}`)
         .then((response) =>{
             setJuegoEspecifico(response.data);
         })
@@ -21,7 +21,7 @@ function FormularioEnviarComentario() {
     }, [])
 
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${userLogeado}`)
+        axios.get(`http://localhost:8000/users/${userLogeado}`)
         .then((response) =>{
             setUserEspecifico(response.data);
         })
@@ -34,7 +34,7 @@ function FormularioEnviarComentario() {
         const comentario = data.comentario;
         const game = juegoEspecifico.title;
         const username = userEspecifico.username;
-        await axios.post(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/comentarios/crear-comentario`, {
+        await axios.post(`http://localhost:8000/comentarios/crear-comentario`, {
         username,
         game,
         comentario

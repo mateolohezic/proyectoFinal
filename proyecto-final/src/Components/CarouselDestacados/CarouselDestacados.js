@@ -6,7 +6,7 @@ function CarouselDestacados() {
 
     const [destacados, setDestacados] = useState([])
     useEffect(() =>{
-        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/obtener-juegos`)
+        axios.get(`http://localhost:8000/obtener-juegos`)
         .then((response) =>{
             setDestacados(response.data.filter(juego => juego.favorite === true && juego.published === true).sort((a, b) => 0.5 - Math.random()).shift());
         })
@@ -16,8 +16,10 @@ function CarouselDestacados() {
     }, [])
 
     const setearJuego = () =>{
-        localStorage.setItem('idJuego',destacados._id)
-        window.location.replace('/Game')
+        if (destacados._id !== undefined) {   
+            localStorage.setItem('idJuego',destacados._id)
+            window.location.replace('/Game')
+        }
     }
 
     const irADestacados = () =>{
@@ -33,16 +35,16 @@ function CarouselDestacados() {
                     <div id="carouselDestacados" className="carousel slide carouselDestacadoSombra" data-bs-ride="carousel">
                             <div className="carousel-inner cajaCarousel">
                                 <div className="carousel-item active" data-bs-interval="2000">
-                                <img src={destacados.image1} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"/>
+                                <img src={destacados.image1} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"  onClick={setearJuego}/>
                                 </div>
                                 <div className="carousel-item" data-bs-interval="2000">
-                                <img src={destacados.image2} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"/>
+                                <img src={destacados.image2} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"  onClick={setearJuego}/>
                                 </div>
                                 <div className="carousel-item" data-bs-interval="2000">
-                                <img src={destacados.image3} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"/>
+                                <img src={destacados.image3} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"  onClick={setearJuego}/>
                                 </div>
                                 <div className="carousel-item" data-bs-interval="2000">
-                                <img src={destacados.image4} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"/>
+                                <img src={destacados.image4} className="d-block w-100 imagenCarousel" alt="Imagen-Destacado"  onClick={setearJuego}/>
                                 </div>
                                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselDestacados" data-bs-slide="prev">
                                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
