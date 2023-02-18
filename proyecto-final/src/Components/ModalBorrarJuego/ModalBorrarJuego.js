@@ -14,7 +14,7 @@ function ModalBorrarJuego(juego) {
     if (!tokenAdmin) {
         window.location.replace('/404')
     } else {
-        await axios.delete(`http://localhost:8000/eliminar-juego`, {
+        await axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/eliminar-juego`, {
         data: {
             accessToken: tokenAdmin,
             id: juego.juego._id

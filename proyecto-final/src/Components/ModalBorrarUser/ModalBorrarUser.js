@@ -14,7 +14,7 @@ function ModalBorrarUser( user ) {
         if (!tokenAdmin) {
             window.location.replace('/404')
         } else {
-            await axios.delete(`http://localhost:8000/users/eliminar-user`, {
+            await axios.delete(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/eliminar-user`, {
             data: {
                 accessToken: tokenAdmin,
                 id: user.user._id

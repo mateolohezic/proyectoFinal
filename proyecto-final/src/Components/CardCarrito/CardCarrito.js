@@ -7,7 +7,7 @@ function CardCarrito(juego) {
     const idUser = localStorage.getItem('idUsuarioLogeado');
     
     useEffect(() =>{
-        axios.get(`http://localhost:8000/users/${idUser}`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${idUser}`)
         .then((response) =>{
             setUser(response.data.cart);
         })
@@ -24,7 +24,7 @@ function CardCarrito(juego) {
                 break;
             }
         }
-        await axios.patch(`http://localhost:8000/users/agregar-carrito`, {
+        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/agregar-carrito`, {
             id: idUser,
             cart: userCarrito
         })

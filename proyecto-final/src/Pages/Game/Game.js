@@ -23,7 +23,7 @@ function Game() {
 
     useEffect(() =>{
         if (id !== null) {
-            axios.get(`http://localhost:8000/${id}`)
+            axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/${id}`)
             .then((response) =>{
                 setJuegoEspecifico(response.data);
             })
@@ -35,7 +35,7 @@ function Game() {
 
     useEffect(() =>{
         if (idUser !== null) {   
-            axios.get(`http://localhost:8000/users/${idUser}`)
+            axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${idUser}`)
             .then((response) =>{
                 setUser(response.data);
             })
@@ -52,7 +52,7 @@ function Game() {
     }, [idUser])
     
     useEffect(() =>{
-        axios.get(`http://localhost:8000/comentarios/obtener-comentario`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/comentarios/obtener-comentario`)
         .then((response) =>{
             setComentarios(response.data);
         })
@@ -76,7 +76,7 @@ function Game() {
 
         const carrito = carritoUser;
         const count = await carrito.push(juegoEspecifico);
-        await axios.patch(`http://localhost:8000/users/agregar-carrito`, {
+        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/agregar-carrito`, {
             id: user._id,
             cart: carrito
         })
@@ -87,7 +87,7 @@ function Game() {
 
         const favoritos = favoritosUser;
         const countFavoritos = await favoritos.push(juegoEspecifico);
-        await axios.patch(`http://localhost:8000/users/agregar-favorito`, {
+        await axios.patch(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/agregar-favorito`, {
             id: user._id,
             favorites: favoritos
         })

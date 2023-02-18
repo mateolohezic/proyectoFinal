@@ -11,7 +11,7 @@ function Favoritos() {
 
     useEffect(() =>{
         const actualizarFavoritos = async () => {
-        axios.get(`http://localhost:8000/users/${idUser}`)
+        axios.get(`https://mateo-lohezic-proyecto-final-rolling-code.up.railway.app/users/${idUser}`)
         .then((response) =>{
             setUser(response.data);
             setFavorito(response.data.favorites)
